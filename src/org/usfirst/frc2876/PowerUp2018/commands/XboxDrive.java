@@ -46,7 +46,8 @@ public class XboxDrive extends Command {
     @Override
     protected void execute() {
     	Joystick xbox = Robot.oi.getXboxController();
-    	Robot.driveTrain.arcadeDrive(xbox.getX(), xbox.getY());
+    	Robot.driveTrain.arcadeDrive(Robot.oi.getRightX(), Robot.oi.getLeftY());
+//    	Robot.driveTrain.tankDrive(Robot.oi.getLeftY(), -Robot.oi.getRightY());
     }
 
     // Make this return true when this Command no longer needs to run execute()
