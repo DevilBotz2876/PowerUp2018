@@ -79,7 +79,8 @@ public class DriveTrain extends Subsystem {
     public void updateSmartDashboard() {
     	SmartDashboard.putData("NavX", navx);
 		SmartDashboard.putNumber("navX angle", navx.getAngle());
-    	
+		SmartDashboard.putBoolean("is navx conneced?", navx.isConnected());
+		SmartDashboard.putBoolean("navx is calibrating", navx.isCalibrating());
     }
     
 }

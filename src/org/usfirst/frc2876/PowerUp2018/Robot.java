@@ -103,6 +103,7 @@ public class Robot extends TimedRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
+        driveTrain.navx.reset();
     }
 
     /**
@@ -111,7 +112,7 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        SmartDashboard.putData(driveTrain);
         driveTrain.updateSmartDashboard();
-		SmartDashboard.putData(driveTrain);
     }
 }
