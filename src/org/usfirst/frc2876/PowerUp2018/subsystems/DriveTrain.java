@@ -80,7 +80,9 @@ public class DriveTrain extends Subsystem {
     	SmartDashboard.putData("NavX", navx);
 		SmartDashboard.putNumber("navX angle", navx.getAngle());
 		SmartDashboard.putBoolean("is navx conneced?", navx.isConnected());
-//		SmartDashboard.putBoolean("navx is calibrating", navx.isCalibrating());
+		SmartDashboard.putBoolean("navx is calibrating", navx.isCalibrating());
+		SmartDashboard.putNumber("Encoder Right1", RobotMap.driveTrainRigthtTalonSRX1.getSelectedSensorVelocity(1));
+		SmartDashboard.putData("Differential Drive Data", differentialDrive);
     }
     
 }
