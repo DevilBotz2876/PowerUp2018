@@ -84,7 +84,7 @@ public class RobotMap {
         leftFollower = driveTrainLeftTalonSRX3;
         
         rightFollower.set(ControlMode.Follower, rightMaster.getDeviceID());
-        leftFollower.set(ControlMode.Follower, rightMaster.getDeviceID());
+        leftFollower.set(ControlMode.Follower, leftMaster.getDeviceID());
         
     }
 }

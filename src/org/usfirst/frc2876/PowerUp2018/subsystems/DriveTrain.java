@@ -11,6 +11,8 @@
 
 package org.usfirst.frc2876.PowerUp2018.subsystems;
 
+import javax.security.auth.login.ConfigurationSpi;
+
 import org.usfirst.frc2876.PowerUp2018.RobotMap;
 import org.usfirst.frc2876.PowerUp2018.commands.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -81,8 +83,10 @@ public class DriveTrain extends Subsystem {
 		leftMaster.setNeutralMode(NeutralMode.Coast);
 		rightMaster.configOpenloopRamp(0, 0);
 		leftMaster.configOpenloopRamp(0, 0);
+		rightMaster.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.QuadEncoder, 0, 0);
+		leftMaster.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.QuadEncoder, 0, 0);
 		leftMaster.setSensorPhase(true);
-		rightMaster.setSensorPhase(true);
+		rightMaster.setSensorPhase(false);
 		
 		
 		//TODO: declare MAX_RPM and kDistanceTolerance
@@ -122,10 +126,15 @@ public class DriveTrain extends Subsystem {
 //		SmartDashboard.putNumber("Encoder Right", rightMaster.getSensorPosition());
 //		SmartDashboard.putNumber("Encoder Left", leftMaster.getSelectedSensorPosition(3));
 		SmartDashboard.putData("Differential Drive Data", differentialDrive);
+		
+		SmartDashboard.putData("DistancePID", distanceController);
+		SmartDashboard.putNumber("DistancePID get", distanceController.get());
+		
+		getDistance();
     }
     
     private static final double WHEEL_DIAMETER = 6;
-    private static final double PULSES_PER_REV = 0;
+    private static final double PULSES_PER_REV = 4096;
     
     public double nativeToInches(double nativeUnits){
     	double circumference = Math.PI * WHEEL_DIAMETER;
@@ -134,8 +143,8 @@ public class DriveTrain extends Subsystem {
     
     
     public double getDistance(){
-    	double l = 0;
-    	double r = 0;
+    	double l = nativeToInches(leftMaster.getSelectedSensorPosition(0));
+    	double r = nativeToInches(rightMaster.getSelectedSensorPosition(0));
     	double av = (r - l) / 2;
     	SmartDashboard.putNumber("Left Distance", l);
     	SmartDashboard.putNumber("Right Distance", r);
