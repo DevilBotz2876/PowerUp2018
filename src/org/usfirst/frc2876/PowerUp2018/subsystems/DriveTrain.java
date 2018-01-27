@@ -133,6 +133,10 @@ public class DriveTrain extends Subsystem {
 		getDistance();
     }
     
+    public PIDController getDistancePID(){
+    	return distanceController;
+    }
+    
     private static final double WHEEL_DIAMETER = 6;
     private static final double PULSES_PER_REV = 4096;
     
@@ -145,7 +149,7 @@ public class DriveTrain extends Subsystem {
     public double getDistance(){
     	double l = nativeToInches(leftMaster.getSelectedSensorPosition(0));
     	double r = nativeToInches(rightMaster.getSelectedSensorPosition(0));
-    	double av = (r - l) / 2;
+    	double av = (r + l) / 2;
     	SmartDashboard.putNumber("Left Distance", l);
     	SmartDashboard.putNumber("Right Distance", r);
     	SmartDashboard.putNumber("Average Distance", av);
