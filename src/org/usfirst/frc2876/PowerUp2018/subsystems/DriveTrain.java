@@ -103,15 +103,15 @@ public class DriveTrain extends Subsystem {
 		
 		//TODO: declare MAX_RPM and kDistanceTolerance
 		//TODO: call a get method for MAX_RPM
-		distanceController = new PIDController(0, 0, 0, 0, new AvgEncoder(), new PIDOutput() {
+		distanceController = new PIDController(1.0, 0, 0, 0, new AvgEncoder(), new PIDOutput() {
 			public void pidWrite(double output) {
 				SmartDashboard.putNumber("DistancePid Output", output);
-				leftMaster.set(0);
-				rightMaster.set(0);
+				leftMaster.set(-output);
+				rightMaster.set(-output);
 			}
 		});
 //		distanceController.setOutputRange(-MAX_RPM, MAX_RPM);
-//		distanceController.setAbsoluteTolerance(kDistanceTolerance);
+		distanceController.setAbsoluteTolerance(10);
 		
 		
 	}
@@ -138,6 +138,8 @@ public class DriveTrain extends Subsystem {
 	}
     
     public void updateSmartDashboard() {
+    	SmartDashboard.putData(this);
+    	 
     	SmartDashboard.putData("NavX", navx);
 		SmartDashboard.putNumber("navX angle", navx.getAngle());
 //		SmartDashboard.putBoolean("is navx conneced?", navx.isConnected());
@@ -149,7 +151,9 @@ public class DriveTrain extends Subsystem {
 		SmartDashboard.putData("Differential Drive Data", differentialDrive);
 		
 		SmartDashboard.putData("DistancePID", distanceController);
-		SmartDashboard.putNumber("DistancePID get", distanceController.get());
+		SmartDashboard.putNumber("DistancePID Error", distanceController.getError());
+		
+		//SmartDashboard.putNumber("DistancePID get", distanceController.get());
 		
 		getDistance();
     }

@@ -51,7 +51,7 @@ public class AutoDriveDistance extends Command {
 //    	leftY = Robot.oi.getLeftY();
 //		rightX = -Robot.oi.getRightX();
 //		RobotMap.driveTrain.differentialDrive.arcadeDrive(leftY, rightX);
-    	Robot.driveTrain.arcadeDrive(0, 0);
+    	//Robot.driveTrain.arcadeDrive(0, 0);
     }
 
     // Make this return true when this Command no longer needs to run execute()
