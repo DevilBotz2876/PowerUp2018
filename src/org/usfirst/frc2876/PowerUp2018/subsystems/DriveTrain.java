@@ -20,6 +20,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSource;
@@ -61,7 +63,7 @@ public class DriveTrain extends Subsystem {
     
     public PIDController distanceController;
     public AHRS navx;
-    
+    public CameraServer server;
     
     
     @Override
@@ -116,6 +118,15 @@ public class DriveTrain extends Subsystem {
     	differentialDrive.tankDrive(leftSpeed, rightSpeed);
     }
     
+    public void initializeCamera() {
+		server = CameraServer.getInstance();
+//		server.setQuality(50);
+		UsbCamera serverUsb = server.startAutomaticCapture("cam0", 0);
+		serverUsb.setFPS(15);
+		serverUsb.setResolution(160, 120);
+
+	}
+    
     public void updateSmartDashboard() {
     	SmartDashboard.putData("NavX", navx);
 		SmartDashboard.putNumber("navX angle", navx.getAngle());
@@ -133,6 +144,28 @@ public class DriveTrain extends Subsystem {
 		getDistance();
     }
     
+    public void startDistance(double distance) {
+		distanceController.reset();
+		resetEncoders();
+		distanceController.setSetpoint(distance);
+		distanceController.enable();
+	}
+
+	public boolean isDistanceRunning() {
+		return distanceController.isEnabled();
+	}
+
+	public boolean isDistanceDone() {
+		return distanceController.onTarget();
+	}
+
+	public void stopDistance() {
+		distanceController.reset();
+		leftMaster.set(0);
+		rightMaster.set(0);
+
+	}
+    
     public PIDController getDistancePID(){
     	return distanceController;
     }
@@ -145,6 +178,10 @@ public class DriveTrain extends Subsystem {
     	return (nativeUnits / PULSES_PER_REV) * circumference;
     }
     
+    public void resetEncoders() {
+		leftMaster.setSelectedSensorPosition(leftMaster.getDeviceID(), 0, 100);
+		rightMaster.setSelectedSensorPosition(rightMaster.getDeviceID(), 0, 100);
+	}
     
     public double getDistance(){
     	double l = nativeToInches(leftMaster.getSelectedSensorPosition(0));
