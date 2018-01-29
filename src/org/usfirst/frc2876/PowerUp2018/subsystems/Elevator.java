@@ -67,5 +67,10 @@ public class Elevator extends Subsystem {
     	elevatorMaster.set(0);
     	
     }
+    
+    public void Down() {
+    	elevatorMaster.set(-.3);
+    	
+    }
 }
 
