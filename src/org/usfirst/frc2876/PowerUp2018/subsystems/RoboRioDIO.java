@@ -57,8 +57,8 @@ public class RoboRioDIO extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
    public void updateSmartDashboard() {
-	   SmartDashboard.putString("roborioDIO",String.valueOf(iRBeam.get()));
-    	
+//	   SmartDashboard.putString("roborioDIO", String.valueOf(iRBeam.get()));
+	   SmartDashboard.putBoolean("IR", iRBeam.get());
     }
 }
 
