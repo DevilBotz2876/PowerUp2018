@@ -46,12 +46,7 @@ public class AutoDriveDistance extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-//    	double rightX;
-//    	double leftY;
-//    	leftY = Robot.oi.getLeftY();
-//		rightX = -Robot.oi.getRightX();
-//		RobotMap.driveTrain.differentialDrive.arcadeDrive(leftY, rightX);
-    	//Robot.driveTrain.arcadeDrive(0, 0);
+    	Robot.driveTrain.velocityDistance();
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -143,11 +143,6 @@ public class DriveTrain extends Subsystem {
     	SmartDashboard.putData("NavX", navx);
 		SmartDashboard.putNumber("navX angle", navx.getAngle());
 //		SmartDashboard.putBoolean("is navx conneced?", navx.isConnected());
-//		SmartDashboard.putBoolean("navx is calibrating", navx.isCalibrating());
-//		SmartDashboard.putNumber("Encoder Right(1)", rightMaster.getSelectedSensorPosition(1));
-//		SmartDashboard.putNumber("Encoder Left(3)", leftMaster.getSelectedSensorPosition(3));
-//		SmartDashboard.putNumber("Encoder Right", rightMaster.getSensorPosition());
-//		SmartDashboard.putNumber("Encoder Left", leftMaster.getSelectedSensorPosition(3));
 		SmartDashboard.putData("Differential Drive Data", differentialDrive);
 		
 		SmartDashboard.putData("DistancePID", distanceController);
@@ -157,6 +152,12 @@ public class DriveTrain extends Subsystem {
 		
 		getDistance();
     }
+    
+    public void velocityDistance() {
+		double distance = -distanceController.get();
+		rightMaster.set(distance);
+		leftMaster.set(distance);
+	}
     
     public void startDistance(double distance) {
 		distanceController.reset();
