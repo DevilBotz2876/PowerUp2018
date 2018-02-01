@@ -119,6 +119,10 @@ public class DriveTrain extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
+	public boolean isPIDRunning() {
+		return distanceController.isEnabled();
+	}
+	
     public void arcadeDrive(double xSpeed, double zRotation){
     	differentialDrive.arcadeDrive(xSpeed, zRotation);
     	
@@ -147,7 +151,7 @@ public class DriveTrain extends Subsystem {
 		
 		SmartDashboard.putData("DistancePID", distanceController);
 		SmartDashboard.putNumber("DistancePID Error", distanceController.getError());
-		
+		//
 		//SmartDashboard.putNumber("DistancePID get", distanceController.get());
 		
 		getDistance();
