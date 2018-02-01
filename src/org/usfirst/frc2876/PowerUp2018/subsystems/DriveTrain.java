@@ -68,6 +68,7 @@ public class DriveTrain extends Subsystem {
     public AHRS navx;
     public CameraServer server;
     
+    private int distanceOnTargets;
     
     @Override
     public void initDefaultCommand() {
@@ -103,15 +104,16 @@ public class DriveTrain extends Subsystem {
 		
 		//TODO: declare MAX_RPM and kDistanceTolerance
 		//TODO: call a get method for MAX_RPM
-		distanceController = new PIDController(1.0, 0, 0, 0, new AvgEncoder(), new PIDOutput() {
+		distanceController = new PIDController(.1, 0, 0, 0, new AvgEncoder(), new PIDOutput() {
 			public void pidWrite(double output) {
 				SmartDashboard.putNumber("DistancePid Output", output);
-				leftMaster.set(-output);
-				rightMaster.set(-output);
+//				leftMaster.set(-output);
+//				rightMaster.set(-output);
+				tankDrive(-output, output);
 			}
 		});
 //		distanceController.setOutputRange(-MAX_RPM, MAX_RPM);
-		distanceController.setAbsoluteTolerance(10);
+		distanceController.setAbsoluteTolerance(1);
 		
 		
 	}
@@ -164,6 +166,7 @@ public class DriveTrain extends Subsystem {
 	}
     
     public void startDistance(double distance) {
+    	distanceOnTargets = 0;
 		distanceController.reset();
 		resetEncoders();
 		distanceController.setSetpoint(distance);
@@ -173,9 +176,12 @@ public class DriveTrain extends Subsystem {
 	public boolean isDistanceRunning() {
 		return distanceController.isEnabled();
 	}
-
+   
 	public boolean isDistanceDone() {
-		return distanceController.onTarget();
+		if (distanceController.onTarget()) {
+			distanceOnTargets++;
+		}
+		return (distanceOnTargets > 10); 
 	}
 
 	public void stopDistance() {
