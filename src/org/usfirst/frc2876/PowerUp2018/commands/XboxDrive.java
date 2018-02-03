@@ -48,6 +48,8 @@ public class XboxDrive extends Command {
     	Joystick xbox = Robot.oi.getXboxController();
     	if (!Robot.driveTrain.isTurnPIDRunning() && !Robot.driveTrain.isDistancePIDRunning()){
     		Robot.driveTrain.arcadeDrive(-Robot.oi.getRightX(), Robot.oi.getLeftY());
+    		//Robot.driveTrain.setVelocityArcadeJoysticks(-Robot.oi.getRightX(), Robot.oi.getLeftY());
+    		//Robot.driveTrain.arcadeDrive(0,0);
     	}
 //    	Robot.driveTrain.tankDrive(Robot.oi.getLeftY(), -Robot.oi.getRightY());
     }

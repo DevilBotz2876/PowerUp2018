@@ -104,8 +104,11 @@ public class DriveTrain extends Subsystem {
 		leftMaster.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.QuadEncoder, 0, 0);
 		
 		leftMaster.setSensorPhase(true);
+		//leftMaster.setSensorPhase(false);
 		rightMaster.setSensorPhase(false);
 		
+		//rightMaster.setInverted(false);
+		//leftMaster.setInverted(true);
 		
 		//TODO: declare MAX_RPM and kDistanceTolerance
 		//TODO: call a get method for MAX_RPM
@@ -118,15 +121,19 @@ public class DriveTrain extends Subsystem {
 			}
 		});
 //		distanceController.setOutputRange(-MAX_RPM, MAX_RPM);
-		distanceController.setAbsoluteTolerance(1);
+		distanceController.setAbsoluteTolerance(2.0f);
 		
-		turnController = new PIDController(.1, 0, 0, 0, navx, new PIDOutput() {
+		turnController = new PIDController(.02, 0, 0, 0, navx, new PIDOutput() {
 			public void pidWrite(double output) {
 				SmartDashboard.putNumber("TurnPid Output", output);
-
+				
+				
 			//	double minMove = 500.0f;
 			//	output = minRpm(output, minMove);
-
+				
+//				double min = 0.25;
+//				output = minRpm(output, min);
+//				SmartDashboard.putNumber("TurnPid min Output", output);
 			//	leftMaster.set(-output);
 			//	rightMaster.set(output);
 				tankDrive(-output, -output);
@@ -135,7 +142,7 @@ public class DriveTrain extends Subsystem {
 		});
 		
 		
-	//	turnController.setOutputRange(-MAX_RPM, MAX_RPM);
+	//	turnController.setOutputRange(-0.5, 0.5);
 		turnController.setInputRange(-180.0f, 180.0f);
 		turnController.setAbsoluteTolerance(kTurnToleranceDegrees);
 	    turnController.setContinuous(true);
@@ -157,6 +164,25 @@ public class DriveTrain extends Subsystem {
     	differentialDrive.arcadeDrive(xSpeed, zRotation);
     	
     }
+    public void setVelocityArcadeJoysticks(double speed, double rotate) {
+		if (speed > 0.0) {
+			if (rotate > 0.0) {
+				leftMaster.set(ControlMode.Velocity, (speed - rotate) * MAX_RPM);
+				rightMaster.set(ControlMode.Velocity, Math.max(speed, rotate) * MAX_RPM);
+			} else {
+				leftMaster.set(ControlMode.Velocity, Math.max(speed, -rotate) * MAX_RPM);
+				rightMaster.set(ControlMode.Velocity, (speed + rotate) * MAX_RPM);
+			}
+		} else {
+			if (rotate > 0.0) {
+				leftMaster.set(ControlMode.Velocity, -Math.max(-speed, rotate) * MAX_RPM);
+				rightMaster.set(ControlMode.Velocity, (speed + rotate) * MAX_RPM);
+			} else {
+				leftMaster.set(ControlMode.Velocity, (speed - rotate) * MAX_RPM);
+				rightMaster.set(ControlMode.Velocity, -Math.max(-speed, -rotate) * MAX_RPM);
+			}
+		}
+	}
     
     public void tankDrive(double leftSpeed, double rightSpeed){
     	differentialDrive.tankDrive(leftSpeed, rightSpeed);
@@ -188,7 +214,6 @@ public class DriveTrain extends Subsystem {
 		SmartDashboard.putNumber("TurnPID Error", turnController.getError());
 		//
 		//SmartDashboard.putNumber("DistancePID get", distanceController.get());
-		
 		getDistance();
     }
     
@@ -202,6 +227,18 @@ public class DriveTrain extends Subsystem {
 			}
 		}
 		return outputRpm;
+	}
+    
+    private double minOutput(double inputOutput, double minOutput) {
+		double output = inputOutput;
+		if (Math.abs(inputOutput) < minOutput) {
+			if (output < 0) {
+				output = -minOutput;
+			} else if (output > 0) {
+				output = minOutput;
+			}
+		}
+		return output;
 	}
     
     public void velocityDistance() {
@@ -250,12 +287,13 @@ public class DriveTrain extends Subsystem {
 		if (turnController.onTarget()) {
 			turnOnTargets++;
 		}
-		return (turnOnTargets > 10); 
+		return (turnOnTargets > 0); 
 	}
 
     public void startTurn(double turn) {
     	turnOnTargets = 0;
 		turnController.reset();
+		navx.reset();
 		resetEncoders();
 		turnController.setSetpoint(turn);
 		turnController.enable();
