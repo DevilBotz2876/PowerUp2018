@@ -73,6 +73,7 @@ public class DriveTrain extends Subsystem {
     public CameraServer server;
     
     private int distanceOnTargets;
+    private int turnOnTargets;
     
     @Override
     public void initDefaultCommand() {
@@ -119,20 +120,22 @@ public class DriveTrain extends Subsystem {
 //		distanceController.setOutputRange(-MAX_RPM, MAX_RPM);
 		distanceController.setAbsoluteTolerance(1);
 		
-		turnController = new PIDController(.1, 0, 0, -3, navx, new PIDOutput() {
+		turnController = new PIDController(.1, 0, 0, 0, navx, new PIDOutput() {
 			public void pidWrite(double output) {
 				SmartDashboard.putNumber("TurnPid Output", output);
 
-				double minMove = 500.0f;
-				output = minRpm(output, minMove);
+			//	double minMove = 500.0f;
+			//	output = minRpm(output, minMove);
 
-				leftMaster.set(-output);
-				rightMaster.set(output);
+			//	leftMaster.set(-output);
+			//	rightMaster.set(output);
+				tankDrive(-output, -output);
+				
 			}
 		});
 		
 		
-		turnController.setOutputRange(-MAX_RPM, MAX_RPM);
+	//	turnController.setOutputRange(-MAX_RPM, MAX_RPM);
 		turnController.setInputRange(-180.0f, 180.0f);
 		turnController.setAbsoluteTolerance(kTurnToleranceDegrees);
 	    turnController.setContinuous(true);
@@ -173,7 +176,7 @@ public class DriveTrain extends Subsystem {
     	 
     	SmartDashboard.putData("NavX", navx);
 		SmartDashboard.putNumber("navX angle", navx.getAngle());
-		SmartDashboard.putBoolean("is navx conneced?", navx.isConnected());
+	//	SmartDashboard.putBoolean("is navx connecticut?", navx.isConnected());
 		SmartDashboard.putData("Differential Drive Data", differentialDrive);
 		SmartDashboard.putBoolean("is navX moving", navx.isMoving());
 		SmartDashboard.putBoolean("is navX rotating", navx.isRotating());
@@ -236,6 +239,37 @@ public class DriveTrain extends Subsystem {
     	return distanceController;
     }
     
+    //________________________________________________________________
+    
+    
+	public boolean isTurnRunning() {
+		return turnController.isEnabled();
+	}
+   
+	public boolean isTurnDone() {
+		if (turnController.onTarget()) {
+			turnOnTargets++;
+		}
+		return (turnOnTargets > 10); 
+	}
+
+    public void startTurn(double turn) {
+    	turnOnTargets = 0;
+		turnController.reset();
+		resetEncoders();
+		turnController.setSetpoint(turn);
+		turnController.enable();
+	}
+    
+	public void stopTurn() {
+		turnController.reset();
+		leftMaster.set(0);
+		rightMaster.set(0);
+	}
+    
+    public PIDController getTurnPID(){
+    	return turnController;
+    }
     private static final double WHEEL_DIAMETER = 6;
     private static final double PULSES_PER_REV = 4096;
     
