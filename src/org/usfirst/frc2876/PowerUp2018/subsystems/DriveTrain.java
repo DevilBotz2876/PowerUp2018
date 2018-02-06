@@ -103,12 +103,11 @@ public class DriveTrain extends Subsystem {
 		rightMaster.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.QuadEncoder, 0, 0);
 		leftMaster.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.QuadEncoder, 0, 0);
 		
-		leftMaster.setSensorPhase(true);
-		//leftMaster.setSensorPhase(false);
-		rightMaster.setSensorPhase(false);
+		leftMaster.setSensorPhase(false);
+		rightMaster.setSensorPhase(true);
 		
-		//rightMaster.setInverted(false);
-		//leftMaster.setInverted(true);
+//		rightMaster.setInverted(true);
+		leftMaster.setInverted(true);
 		
 		//TODO: declare MAX_RPM and kDistanceTolerance
 		//TODO: call a get method for MAX_RPM
@@ -206,6 +205,9 @@ public class DriveTrain extends Subsystem {
 		SmartDashboard.putData("Differential Drive Data", differentialDrive);
 		SmartDashboard.putBoolean("is navX moving", navx.isMoving());
 		SmartDashboard.putBoolean("is navX rotating", navx.isRotating());
+		
+		SmartDashboard.putNumber("Right Velocity", rightMaster.getSelectedSensorVelocity(0));
+		SmartDashboard.putNumber("Left Velocity", leftMaster.getSelectedSensorVelocity(0));
 		
 		SmartDashboard.putData("DistancePID", distanceController);
 		SmartDashboard.putNumber("DistancePID Error", distanceController.getError());
