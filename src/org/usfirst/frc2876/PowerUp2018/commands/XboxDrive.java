@@ -49,7 +49,9 @@ public class XboxDrive extends Command {
     	if (!Robot.driveTrain.isTurnPIDRunning() && !Robot.driveTrain.isDistancePIDRunning()){
 //    		Robot.driveTrain.arcadeDrive(-Robot.oi.getRightX(), Robot.oi.getLeftY());
     		Robot.driveTrain.setVelocityArcadeJoysticks(Robot.oi.getRightX(), Robot.oi.getLeftY());
+//    		Robot.driveTrain.setVelocityArcadeJoysticks(0, -1);
     		//Robot.driveTrain.arcadeDrive(0,0);
+//    		Robot.driveTrain.tankDrive(1, 0);
     	}
 //    	Robot.driveTrain.tankDrive(Robot.oi.getLeftY(), -Robot.oi.getRightY());
     }

@@ -108,6 +108,12 @@ public class DriveTrain extends Subsystem {
 		
 //		rightMaster.setInverted(true);
 		leftMaster.setInverted(true);
+		leftFollower.setInverted(true);
+		
+		leftMaster.config_kP(0, 1.25, 0);
+		leftMaster.config_kF(0, 0.3468, 0);
+		rightMaster.config_kP(0, 1, 0);
+		rightMaster.config_kF(0, 0.3789, 0);
 		
 		//TODO: declare MAX_RPM and kDistanceTolerance
 		//TODO: call a get method for MAX_RPM
