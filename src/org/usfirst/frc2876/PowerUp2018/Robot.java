@@ -108,6 +108,7 @@ public class Robot extends TimedRobot {
         Scheduler.getInstance().run();
         driveTrain.updateSmartDashboard();
         intake.updateSmartDashboard();
+        elevator.updateSmartDashboard();
     }
 
     @Override
@@ -131,6 +132,7 @@ public class Robot extends TimedRobot {
    
         driveTrain.updateSmartDashboard();
         intake.updateSmartDashboard();
+        elevator.updateSmartDashboard();
         //roborioDIO.updateSmartDashboard();
     }
 }

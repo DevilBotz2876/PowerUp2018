@@ -14,6 +14,7 @@ package org.usfirst.frc2876.PowerUp2018;
 import org.usfirst.frc2876.PowerUp2018.commands.AutoDriveDistance;
 import org.usfirst.frc2876.PowerUp2018.commands.AutoDriveTurn;
 import org.usfirst.frc2876.PowerUp2018.commands.ElevatorDown;
+import org.usfirst.frc2876.PowerUp2018.commands.ElevatorPosition;
 import org.usfirst.frc2876.PowerUp2018.commands.ElevatorStop;
 import org.usfirst.frc2876.PowerUp2018.commands.ElevatorUp;
 import org.usfirst.frc2876.PowerUp2018.commands.IntakeBackward;
@@ -89,7 +90,10 @@ public class OI {
         SmartDashboard.putData("XboxDrive", new XboxDrive());
         SmartDashboard.putData("AutoDriveDistance", new AutoDriveDistance(100));
         SmartDashboard.putData("AutoDriveTurn", new AutoDriveTurn(90));
+        SmartDashboard.putData(RobotMap.SD_KEY_ELEVATOR_POSITION, new ElevatorPosition(80));
 
+        createSmartDashboardNumber(RobotMap.SD_KEY_ELEVATOR_POSITION, 80);
+        
         createSmartDashboardNumber("kDistanceTolerance", 2.0);
         createSmartDashboardString("DriveTalonMode", ControlMode.PercentOutput.name());
  	
