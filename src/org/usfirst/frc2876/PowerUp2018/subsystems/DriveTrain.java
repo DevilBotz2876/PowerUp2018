@@ -110,10 +110,15 @@ public class DriveTrain extends Subsystem {
 		leftMaster.setInverted(true);
 		leftFollower.setInverted(true);
 		
-		leftMaster.config_kP(0, 1.25, 0);
-		leftMaster.config_kF(0, 0.3468, 0);
-		rightMaster.config_kP(0, 1, 0);
-		rightMaster.config_kF(0, 0.3789, 0);
+		leftMaster.config_kP(0, 0.3729, 0);
+		leftMaster.config_kF(0, 0.3761, 0);
+		rightMaster.config_kP(0, 0.3639, 0);
+		rightMaster.config_kF(0, 0.3503, 0);
+		
+//		leftMaster.config_kP(0, 1.25, 0);
+//		leftMaster.config_kF(0, 0.3468, 0);
+//		rightMaster.config_kP(0, 1, 0);
+//		rightMaster.config_kF(0, 0.3789, 0);
 		
 		//TODO: declare MAX_RPM and kDistanceTolerance
 		//TODO: call a get method for MAX_RPM
@@ -122,7 +127,7 @@ public class DriveTrain extends Subsystem {
 				SmartDashboard.putNumber("DistancePid Output", output);
 //				leftMaster.set(-output);
 //				rightMaster.set(-output);
-				tankDrive(-output, output);
+				tankDrive(output, output);
 			}
 		});
 //		distanceController.setOutputRange(-MAX_RPM, MAX_RPM);
@@ -141,7 +146,7 @@ public class DriveTrain extends Subsystem {
 //				SmartDashboard.putNumber("TurnPid min Output", output);
 			//	leftMaster.set(-output);
 			//	rightMaster.set(output);
-				tankDrive(-output, -output);
+				tankDrive(output, -output);
 				
 			}
 		});
