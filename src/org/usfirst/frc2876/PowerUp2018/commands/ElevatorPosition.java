@@ -45,7 +45,7 @@ public class ElevatorPosition extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-    	double pos = SmartDashboard.getNumber(RobotMap.SD_KEY_ELEVATOR_POSITION, m_position);
+    	double pos = SmartDashboard.getNumber(RobotMap.SD_KEY_ELEVATOR_POSITION_SETPOINT, m_position);
     	
     	Robot.elevator.setPosition(pos);
     }

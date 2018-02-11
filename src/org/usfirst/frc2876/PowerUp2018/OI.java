@@ -90,9 +90,9 @@ public class OI {
         SmartDashboard.putData("XboxDrive", new XboxDrive());
         SmartDashboard.putData("AutoDriveDistance", new AutoDriveDistance(100));
         SmartDashboard.putData("AutoDriveTurn", new AutoDriveTurn(90));
-        SmartDashboard.putData(RobotMap.SD_KEY_ELEVATOR_POSITION, new ElevatorPosition(80));
+        SmartDashboard.putData("ElevatorPosition", new ElevatorPosition(80));
 
-        createSmartDashboardNumber(RobotMap.SD_KEY_ELEVATOR_POSITION, 80);
+        createSmartDashboardNumber(RobotMap.SD_KEY_ELEVATOR_POSITION_SETPOINT, 80);
         
         createSmartDashboardNumber("kDistanceTolerance", 2.0);
         createSmartDashboardString("DriveTalonMode", ControlMode.PercentOutput.name());
