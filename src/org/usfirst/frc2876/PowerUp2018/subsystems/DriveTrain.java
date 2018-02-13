@@ -73,6 +73,7 @@ public class DriveTrain extends Subsystem {
 
 	private Ultrasonic usSensor = RobotMap.usSensor;
 	
+	public PIDController straightController;
 	public PIDController distanceController;
 	public PIDController turnController;
 	public AHRS navx;
@@ -130,6 +131,16 @@ public class DriveTrain extends Subsystem {
 		//		rightMaster.config_kP(0, 1, 0);
 		//		rightMaster.config_kF(0, 0.3789, 0);
 
+		straightController = new PIDController(10, 0, 0, navx, new PIDOutput() {
+			public void pidWrite(double output) {
+				SmartDashboard.putNumber("StraightPid Output", output);
+				// Don't output any values to the talons to make robot move
+				// here. Instead use the outputs in other places so we can
+				// combine multiple PID controllers.
+			}
+		});
+		straightController.setOutputRange(-MAX_RPM, MAX_RPM);
+		
 		distanceController = new PIDController(.1, 0, 0, 0, new AvgEncoder(), new PIDOutput() {
 			public void pidWrite(double output) {
 				SmartDashboard.putNumber("DistancePid Output", output);
@@ -240,6 +251,18 @@ public class DriveTrain extends Subsystem {
 			}
 		}
 	}
+	
+	public void setStraightVelocityArcadeJoysticks(double speed) {
+		double straight = straightController.get();
+		if (speed > 0.0) {
+			leftMaster.set(ControlMode.Velocity, -Math.max(-straight, speed) * MAX_RPM);
+			rightMaster.set(ControlMode.Velocity, (straight + speed) * MAX_RPM);
+		} else {
+			leftMaster.set(ControlMode.Velocity, (straight - speed) * MAX_RPM);
+			rightMaster.set(ControlMode.Velocity, -Math.max(-straight, -speed) * MAX_RPM);
+		}
+		System.out.println(straight);
+	}
 
 	public void tankDrive(double leftSpeed, double rightSpeed){
 		differentialDrive.tankDrive(leftSpeed, rightSpeed);
@@ -259,7 +282,7 @@ public class DriveTrain extends Subsystem {
 
 		SmartDashboard.putData("NavX", navx);
 		SmartDashboard.putNumber("navX angle", navx.getAngle());
-		//	SmartDashboard.putBoolean("is navx connecticut?", navx.isConnected());
+		SmartDashboard.putBoolean("is navx connecticut?", navx.isConnected());
 		SmartDashboard.putData("Differential Drive Data", differentialDrive);
 		SmartDashboard.putBoolean("is navX moving", navx.isMoving());
 		SmartDashboard.putBoolean("is navX rotating", navx.isRotating());
@@ -272,6 +295,11 @@ public class DriveTrain extends Subsystem {
 
 		SmartDashboard.putData("TurnPID", turnController);
 		SmartDashboard.putNumber("TurnPID Error", turnController.getError());
+		
+		SmartDashboard.putData("StraightPID", straightController);
+		SmartDashboard.putNumber("StraightPID Error", straightController.getError());
+		SmartDashboard.putBoolean("isStraightPIDRunning", isStraightRunning());
+		
 		
 		getDistance();
 		
@@ -338,8 +366,41 @@ public class DriveTrain extends Subsystem {
 	public PIDController getDistancePID(){
 		return distanceController;
 	}
+	
+	//_______________________________________________________________________________________________________
+	
+	public PIDController getStraightPID(){
+		return straightController;
+	}
+	
+	public boolean isStraightRunning() {
+		return straightController.isEnabled();
+	}
+	
+	public void startStraight() {
+		// Don't need to reset navx angle to zero here. To drive straight we
+		// just need to pick whatever angle the robot is at when we start the
+		// PID controller.
+//		stopTurn();
+		straightController.reset();
+		navx.reset();
+//		straightController.setSetpoint(navx.getAngle());
+		straightController.enable();
+	}
+	
+	public void setStraightAngle(){
+		straightController.setSetpoint(navx.getAngle());
+	}
+	
+	public void stopStraight() {
+		straightController.reset();
+		straightController.disable();
+//		leftMaster.set(0);
+//		rightMaster.set(0);
 
-	//________________________________________________________________
+	}
+
+	//_______________________________________________________________________________________________________
 
 
 	public boolean isTurnRunning() {
