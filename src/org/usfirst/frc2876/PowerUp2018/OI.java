@@ -11,7 +11,9 @@
 
 package org.usfirst.frc2876.PowerUp2018;
 
+import org.usfirst.frc2876.PowerUp2018.commands.AutoCGBox;
 import org.usfirst.frc2876.PowerUp2018.commands.AutoDriveDistance;
+import org.usfirst.frc2876.PowerUp2018.commands.AutoDriveStraightDistance;
 import org.usfirst.frc2876.PowerUp2018.commands.AutoDriveTurn;
 import org.usfirst.frc2876.PowerUp2018.commands.ElevatorDown;
 import org.usfirst.frc2876.PowerUp2018.commands.ElevatorPosition;
@@ -91,6 +93,8 @@ public class OI {
         SmartDashboard.putData("AutoDriveDistance", new AutoDriveDistance(100));
         SmartDashboard.putData("AutoDriveTurn", new AutoDriveTurn(90));
         SmartDashboard.putData("ElevatorPosition", new ElevatorPosition(80));
+        SmartDashboard.putData("AutoDriveStraightDistance", new AutoDriveStraightDistance(100));
+        SmartDashboard.putData("Make a Box", new AutoCGBox());
 
         createSmartDashboardNumber(RobotMap.SD_KEY_ELEVATOR_POSITION_SETPOINT, 80);
         

@@ -54,7 +54,7 @@ public class XboxDrive extends Command {
 //    		Robot.driveTrain.setVelocityArcadeJoysticks(0, -1);
 //    		Robot.driveTrain.arcadeDrive(0,0);
     		
-    		if(Math.abs(Robot.oi.getRightX()) <= .1){
+    		if(Math.abs(Robot.oi.getRightX()) <= .1 && !(Math.abs(Robot.oi.getLeftY()) <= .1)){
     			if(isStraightBeginning){
     				Robot.driveTrain.startStraight();
     				isStraightBeginning = false;
