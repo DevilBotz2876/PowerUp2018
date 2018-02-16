@@ -11,6 +11,7 @@
 
 package org.usfirst.frc2876.PowerUp2018.subsystems;
 
+import org.usfirst.frc2876.PowerUp2018.Robot;
 import org.usfirst.frc2876.PowerUp2018.RobotMap;
 import org.usfirst.frc2876.PowerUp2018.commands.ElevatorStop;
 
@@ -139,7 +140,8 @@ public class Elevator extends Subsystem {
 	}
 	
 	public void Up() {
-		elevatorMaster.set(.3);
+		double speed = SmartDashboard.getNumber("ElevatorSpeed", .3); 
+		elevatorMaster.set(speed);
 
 	}
 
@@ -149,8 +151,14 @@ public class Elevator extends Subsystem {
 	}
 
 	public void Down() {
-		elevatorMaster.set(-.3);
+		double speed = SmartDashboard.getNumber("ElevatorSpeed", .3);
+		elevatorMaster.set(-speed);
 
+	}
+	
+	public void Hold() {
+		double speed = SmartDashboard.getNumber("ElevatorHold", .1);
+		elevatorMaster.set(speed);
 	}
 
 }

@@ -100,7 +100,9 @@ public class OI {
         
         createSmartDashboardNumber("kDistanceTolerance", 2.0);
         createSmartDashboardString("DriveTalonMode", ControlMode.PercentOutput.name());
- 	
+        createSmartDashboardNumber("ElevatorSpeed", .3);
+        createSmartDashboardNumber("ElevatorHold", .1);
+        
         leftBumper = new JoystickButton(xboxController, LEFT_BUMPER);
         leftBumper.whileHeld(new IntakeBackward());
         
