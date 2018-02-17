@@ -146,13 +146,26 @@ public class Robot extends TimedRobot {
         //roborioDIO.updateSmartDashboard();
     }
     
+    
     public static boolean isSwitchLeft() {
     	return (gameData.length() > 0 && gameData.charAt(0) == 'L');
     }
     
+    public static boolean isSwitchRight() {
+    	return (gameData.length() > 0 && gameData.charAt(0) == 'R');
+    }
+    
+    
+    
     public static boolean isScaleLeft() {
     	return (gameData.length() > 0 && gameData.charAt(1) == 'L');
     }
+    
+    public static boolean isScaleRight() {
+    	return (gameData.length() > 0 && gameData.charAt(1) == 'R');
+    }
+    
+    
     
     public static RobotPosition getRobotPos() {
     	return robotPos;
