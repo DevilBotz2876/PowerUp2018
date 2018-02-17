@@ -71,7 +71,8 @@ public class DriveTrain extends Subsystem {
 	private final BHS_TalonSRX rightFollower = RobotMap.rightFollower;
 	private final BHS_TalonSRX leftFollower = RobotMap.leftFollower;
 
-	private Ultrasonic usSensor = RobotMap.usSensor;
+	private Ultrasonic usIntakeSensor = RobotMap.usIntakeSensor;
+	private Ultrasonic usElevatorSensor = RobotMap.usElevatorSensor;
 	
 	public PIDController straightController;
 	public PIDController distanceController;
@@ -355,7 +356,7 @@ public class DriveTrain extends Subsystem {
 		SmartDashboard.putBoolean("isSwitchLeft", Robot.isSwitchLeft());
 		SmartDashboard.putBoolean("isScaleLeft", Robot.isScaleLeft());
 		
-		SmartDashboard.putString("RobotPosition", Robot.getRobotPos().toString());
+		//SmartDashboard.putString("RobotPosition", Robot.getRobotPos().toString());
 		
 		getDistance();
 		
@@ -496,8 +497,8 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void resetEncoders() {
-		leftMaster.setSelectedSensorPosition(leftMaster.getDeviceID(), 0, 100);
-		rightMaster.setSelectedSensorPosition(rightMaster.getDeviceID(), 0, 100);
+		leftMaster.setSelectedSensorPosition(leftMaster.getDeviceID(), 0, 0);
+		rightMaster.setSelectedSensorPosition(rightMaster.getDeviceID(), 0, 0);
 	}
 
 	public double getDistance(){
