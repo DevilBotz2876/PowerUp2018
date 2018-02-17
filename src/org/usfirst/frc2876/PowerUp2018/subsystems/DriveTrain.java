@@ -134,7 +134,7 @@ public class DriveTrain extends Subsystem {
 		//		rightMaster.config_kP(0, 1, 0);
 		//		rightMaster.config_kF(0, 0.3789, 0);
 
-		straightController = new PIDController(.011, 0, 0, navx, new PIDOutput() {
+		straightController = new PIDController(.04, 0, 0, navx, new PIDOutput() {
 			public void pidWrite(double output) {
 				SmartDashboard.putNumber("StraightPid Output", output);
 				// Don't output any values to the talons to make robot move
@@ -198,6 +198,14 @@ public class DriveTrain extends Subsystem {
 			leftFollower.setNeutralMode(NeutralMode.Coast);
 		}
 	}
+	
+	public double getLeftVelocityValue(){
+		return leftMaster.getSelectedSensorVelocity(0);
+	}
+	
+	public double getRightVelocityValue(){
+		return rightMaster.getSelectedSensorVelocity(0);
+	}
 
 	private double adjustSpeed(double speed) {
 		// Adjust sensitivity of joysticks. When the joystick is barely 
@@ -256,14 +264,32 @@ public class DriveTrain extends Subsystem {
 	}
 	
 	public void setStraightVelocityArcadeJoysticks(double speed) {
+//		double straight = straightController.get();
+//		if (speed > 0.0) {
+//			leftMaster.set(ControlMode.Velocity, -Math.max(-straight, speed) * MAX_RPM);
+//			rightMaster.set(ControlMode.Velocity, (straight + speed) * MAX_RPM);
+//		} else {
+//			leftMaster.set(ControlMode.Velocity, (straight - speed) * MAX_RPM);
+//			rightMaster.set(ControlMode.Velocity, -Math.max(-straight, -speed) * MAX_RPM);
+//		}
+
 		double straight = straightController.get();
-		if (speed > 0.0) {
-			leftMaster.set(ControlMode.Velocity, -Math.max(-straight, speed) * MAX_RPM);
-			rightMaster.set(ControlMode.Velocity, (straight + speed) * MAX_RPM);
-		} else {
-			leftMaster.set(ControlMode.Velocity, (straight - speed) * MAX_RPM);
-			rightMaster.set(ControlMode.Velocity, -Math.max(-straight, -speed) * MAX_RPM);
+		double left;
+		double right;
+		
+		if(straight > 0.0){
+			//turn right
+			left = speed;
+			right = speed + straight;
+		}else{
+//			turn left
+			left = speed - straight;
+			right = speed;
 		}
+		leftMaster.set(-left * MAX_RPM);
+		rightMaster.set(right * MAX_RPM);
+		SmartDashboard.putNumber("Left Side", -left);
+		SmartDashboard.putNumber("Right Side", -right);
 		System.out.println(straight);
 	}
 	
