@@ -11,6 +11,8 @@ public class AutoCGSwitch extends CommandGroup {
 
 	public AutoCGSwitch() {
 
+		System.out.println("Running AutoCGSwitch: " + Robot.getRobotPos() + " " + Robot.isSwitchLeft());
+		
 		// TODO we need to raise arms to release kick-stand
 		// addParallel(new ElevatorPosition(10));
 
@@ -23,6 +25,8 @@ public class AutoCGSwitch extends CommandGroup {
 			addSequential(new AutoDriveStraightDistance(100));
 			addSequential(new AutoDriveTurn(-60 * angleMultiplier));
 			addSequential(new AutoDriveStraightDistance(20));
+			
+			System.out.println("Running AutoCGSwitch: we added some sequential commands");
 
 		} else if (Robot.getRobotPos() == Robot.RobotPosition.Left) {
 

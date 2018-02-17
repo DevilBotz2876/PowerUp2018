@@ -352,6 +352,10 @@ public class DriveTrain extends Subsystem {
 		SmartDashboard.putNumber("StraightPID Error", straightController.getError());
 		SmartDashboard.putBoolean("isStraightPIDRunning", isStraightRunning());
 		
+		SmartDashboard.putBoolean("isSwitchLeft", Robot.isSwitchLeft());
+		SmartDashboard.putBoolean("isScaleLeft", Robot.isScaleLeft());
+		
+		SmartDashboard.putString("RobotPosition", Robot.getRobotPos().toString());
 		
 		getDistance();
 		
