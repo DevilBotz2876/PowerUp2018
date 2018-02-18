@@ -95,8 +95,9 @@ public class Elevator extends Subsystem {
 		/* set the peak and nominal outputs, 12V means full */
 		elevatorMaster.configNominalOutputForward(0, kTimeoutMs);
 		elevatorMaster.configNominalOutputReverse(0, kTimeoutMs);
-		elevatorMaster.configPeakOutputForward(.2, kTimeoutMs);
-		elevatorMaster.configPeakOutputReverse(-.2, kTimeoutMs);
+		// 1 means full power, 12v.  Perhaps make down smaller than up since gravity is helping go down.
+		elevatorMaster.configPeakOutputForward(.3, kTimeoutMs);
+		elevatorMaster.configPeakOutputReverse(-.3, kTimeoutMs);
 		/*
 		 * set the allowable closed-loop error, Closed-Loop output will be
 		 * neutral within this range. See Table in Section 17.2.1 for native
@@ -143,11 +144,9 @@ public class Elevator extends Subsystem {
 
 	}
 	
-    
-	
 	public void updateSmartDashboard(){
-		SmartDashboard.putNumber("Elevator getPosition", getPosition());
-		SmartDashboard.putNumber("Elevator Last Pos", getLastPosition());
+		SmartDashboard.putNumber("Elevator Cur Pos", getCurrentPosition());
+		//SmartDashboard.putNumber("Elevator Set Pos", getLastPosition());
 	
 		SmartDashboard.putBoolean("Elevator Bottom", isBottom());
 
@@ -159,17 +158,16 @@ public class Elevator extends Subsystem {
        	
 	}
 
-	public int getLastPosition() {
-		return lastPosition;
-	}
-	public void setLastPosition(int pos) {
-		lastPosition = pos;
-	}
-	// Put methods for controlling this subsystem
-	// here. Call these from Commands.
+//	public int getLastPosition() {
+//		return lastPosition;
+//	}
+//	public void setLastPosition(int pos) {
+//		lastPosition = pos;
+//	}
+	
 	public void setPosition(double positionInches){
-		Double d = new Double(positionInches);
-		setLastPosition(d.intValue());
+//		Double d = new Double(positionInches);
+//		setLastPosition(d.intValue());
 //		double positionNative = inchesToNative(positionInches);
 		elevatorMaster.set(ControlMode.Position, positionInches);
 	}
@@ -178,8 +176,19 @@ public class Elevator extends Subsystem {
 		elevatorMaster.setSelectedSensorPosition(value, 0, 0);
 	}
 	
-	public double getPosition(){
+	public double getCurrentPosition(){
 		return elevatorMaster.getSelectedSensorPosition(0);
+	}
+	
+	public boolean isOnTarget() {
+		if (elevatorMaster.getClosedLoopError(0) < 500) {
+//			if (elevatorMaster.getMotorOutputPercent() < 0.1) {
+//				// Within error and motor has stopped moving alot so call it done.
+//				return true;
+//			}
+			return true;
+		}
+		return false;
 	}
 	
 	public void Up() {

@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class CGAcquireCube extends CommandGroup {
+public class CGDumpCubeSwitch extends CommandGroup {
 	
-	public CGAcquireCube() {
-		addSequential(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_ACQUIRE_CUBE));
-		addSequential(new IntakeForward());
+	public CGDumpCubeSwitch() {
+		addSequential(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_SWITCH_CUBE));
+		addSequential(new IntakeBackward());
 		addSequential(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_DRIVE_CUBE));
 	}
 
