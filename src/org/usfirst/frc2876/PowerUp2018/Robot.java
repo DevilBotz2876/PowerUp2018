@@ -109,7 +109,18 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
     	// Get FMS data
+        int retries = 100;
     	gameData = DriverStation.getInstance().getGameSpecificMessage();
+        while (gameData.length() < 2 && retries > 0) {
+            retries--;
+            try {
+                Thread.sleep(5);
+            } catch (InterruptedException ie) {
+                // ignore the interrupted exception
+            }
+            gameData = DriverStation.getInstance().getGameSpecificMessage();
+        }
+        
     	// Get Robot Position from SmartDashboard
     	//robotPos = RobotPosition.Center;  // TODO - implement robot position from smartdashboard
     	robotPos = startChooser.getSelected();
@@ -161,13 +172,26 @@ public class Robot extends TimedRobot {
         //roborioDIO.updateSmartDashboard();
     }
     
+    
     public static boolean isSwitchLeft() {
     	return (gameData.length() > 0 && gameData.charAt(0) == 'L');
     }
     
+    public static boolean isSwitchRight() {
+    	return (gameData.length() > 0 && gameData.charAt(0) == 'R');
+    }
+    
+    
+    
     public static boolean isScaleLeft() {
     	return (gameData.length() > 0 && gameData.charAt(1) == 'L');
     }
+    
+    public static boolean isScaleRight() {
+    	return (gameData.length() > 0 && gameData.charAt(1) == 'R');
+    }
+    
+    
     
     public static RobotPosition getRobotPos() {
     	return robotPos;
