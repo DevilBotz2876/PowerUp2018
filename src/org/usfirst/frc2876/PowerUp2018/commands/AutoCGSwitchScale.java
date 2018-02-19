@@ -1,6 +1,7 @@
 package org.usfirst.frc2876.PowerUp2018.commands;
 
 import org.usfirst.frc2876.PowerUp2018.Robot;
+import org.usfirst.frc2876.PowerUp2018.utilities.Distances;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -17,17 +18,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  */
 public class AutoCGSwitchScale extends CommandGroup {
-
-	// Guesstimates!
-	private static final int CENTER_WALL_TO_TURN_DIST = 20;
-	private static final int WALL_TO_SWITCH_DIST = 50;
-	private static final int AT_SWITCH_DIST = 10;
-	private static final int WALL_TO_SCALE_DIST = 100;
-	private static final int WALL_TO_PLATFORM_ZONE_DIST = 75;
-	private static final int PLATFORM_ZONE_WIDTH_DIST = 75;
-	private static final int PLATFORM_ZONE_TO_SCALE_DIST = 15;
-	private static final int AT_SCALE_DIST = 5;
-	
 	
     public AutoCGSwitchScale() {
     	
@@ -63,33 +53,33 @@ public class AutoCGSwitchScale extends CommandGroup {
     
     private void fromCenterDoSwitch() {
 		int angleMultiplier = Robot.isSwitchLeft() ? -1 : 1;
-		addSequential(new AutoDriveStraightDistance(CENTER_WALL_TO_TURN_DIST));
+		addSequential(new AutoDriveStraightDistance(Distances.CENTER_WALL_TO_TURN));
 		addSequential(new AutoDriveTurn(60 * angleMultiplier));
-		addSequential(new AutoDriveStraightDistance(100));
+		addSequential(new AutoDriveStraightDistance(Distances.CENTER_TURN_TO_SWITCH));
 		addSequential(new AutoDriveTurn(-60 * angleMultiplier));
 		addSequential(new AutoDriveStraightDistance(20));
     }
     
     private void fromSideDoSameSwitch(boolean turnClockwise) {
     	int turnAngleModifier = turnClockwise ? 1 : -1;
-		addSequential(new AutoDriveStraightDistance(WALL_TO_SWITCH_DIST));
+		addSequential(new AutoDriveStraightDistance(Distances.WALL_TO_SWITCH));
 		addSequential(new AutoDriveTurn(90 * turnAngleModifier));
-		addSequential(new AutoDriveStraightDistance(AT_SWITCH_DIST));
+		addSequential(new AutoDriveStraightDistance(Distances.AT_SWITCH));
     }
     
     private void fromSideDoOppositeScale(boolean turnClockwise) {
     	int turnAngleModifier = turnClockwise ? 1 : -1;
-		addSequential(new AutoDriveStraightDistance(WALL_TO_PLATFORM_ZONE_DIST));
+		addSequential(new AutoDriveStraightDistance(Distances.WALL_TO_PLATFORM_ZONE));
 		addSequential(new AutoDriveTurn(90 * turnAngleModifier));
-		addSequential(new AutoDriveStraightDistance(PLATFORM_ZONE_WIDTH_DIST));
+		addSequential(new AutoDriveStraightDistance(Distances.PLATFORM_ZONE_WIDTH));
 		addSequential(new AutoDriveTurn(-90 * turnAngleModifier));
-		addSequential(new AutoDriveStraightDistance(PLATFORM_ZONE_TO_SCALE_DIST));
+		addSequential(new AutoDriveStraightDistance(Distances.PLATFORM_ZONE_TO_SCALE));
     }
     
     private void fromSideDoSameScale(boolean turnClockwise) {
     	int turnAngleModifier = turnClockwise ? 1 : -1;
-		addSequential(new AutoDriveStraightDistance(WALL_TO_SCALE_DIST));
+		addSequential(new AutoDriveStraightDistance(Distances.WALL_TO_SCALE));
 		addSequential(new AutoDriveTurn(90 * turnAngleModifier));
-		addSequential(new AutoDriveStraightDistance(AT_SCALE_DIST));
+		addSequential(new AutoDriveStraightDistance(Distances.AT_SCALE));
     }
 }
