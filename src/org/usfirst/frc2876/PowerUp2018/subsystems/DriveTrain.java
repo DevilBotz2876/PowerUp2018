@@ -99,9 +99,12 @@ public class DriveTrain extends Subsystem {
 		// means we don't pat the safey watchdog.  So turn it off.
 		differentialDrive.setSafetyEnabled(false);
 
-		rightMaster.setMode(ControlMode.Velocity);
-		leftMaster.setMode(ControlMode.Velocity);
+//		rightMaster.setMode(ControlMode.Velocity);
+//		leftMaster.setMode(ControlMode.Velocity);
 
+		rightMaster.setMode(ControlMode.PercentOutput);
+		leftMaster.setMode(ControlMode.PercentOutput);
+		
 		rightMaster.setNeutralMode(NeutralMode.Coast);
 		rightFollower.setNeutralMode(NeutralMode.Coast);
 		leftMaster.setNeutralMode(NeutralMode.Coast);
@@ -122,10 +125,15 @@ public class DriveTrain extends Subsystem {
 		leftMaster.setInverted(true);
 		leftFollower.setInverted(true);
 
-		leftMaster.config_kP(0, 0.3729, 0);
-		leftMaster.config_kF(0, 0.3761, 0);
-		rightMaster.config_kP(0, 0.3639, 0);
-		rightMaster.config_kF(0, 0.3503, 0);
+		// leftMaster.config_kP(0, 0.3729, 0);
+		// leftMaster.config_kF(0, 0.3761, 0);
+		// rightMaster.config_kP(0, 0.3639, 0);
+		// rightMaster.config_kF(0, 0.3503, 0);
+		
+		leftMaster.config_kP(0, 0, 0);
+		leftMaster.config_kF(0, 0, 0);
+		rightMaster.config_kP(0, 0, 0);
+		rightMaster.config_kF(0, 0, 0);
 
 		// leftMaster.config_kP(0, 1.25, 0);
 		// leftMaster.config_kF(0, 0.3468, 0);
@@ -232,9 +240,9 @@ public class DriveTrain extends Subsystem {
 	// tuning.
 	public double adjustJoystickElevator(double speed) {
 		if (Robot.elevator.getCurrentPosition() > RobotMap.ELEVATOR_POSITION_SWITCH_CUBE) {
-			if (speed > 0) {
+			if (speed > .5) {
 				return .5;
-			} else {
+			} else if (speed < -.5) {
 				return -.5;
 			}
 		}
