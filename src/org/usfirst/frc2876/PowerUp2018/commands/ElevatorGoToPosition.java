@@ -44,9 +44,9 @@ public class ElevatorGoToPosition extends Command {
 	@Override
 	protected boolean isFinished() {
 		// TODO: this prob won't work b/c we want to get to setpoint but may be off
-		if (Robot.elevator.getCurrentPosition() == m_position) {
-			return true;
-		}
+//		if (Robot.elevator.getCurrentPosition() == m_position) {
+//			return true;
+//		}
 		return Robot.elevator.isOnTarget();
 	}
 

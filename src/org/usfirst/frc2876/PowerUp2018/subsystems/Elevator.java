@@ -52,7 +52,7 @@ public class Elevator extends Subsystem {
 
 	private Ultrasonic usElevatorSensor = RobotMap.usElevatorSensor;
 	
-	private int lastPosition = 0;
+	private int setpoint = 0;
 	
 	@Override
 	public void initDefaultCommand() {
@@ -148,7 +148,9 @@ public class Elevator extends Subsystem {
 	
 	public void updateSmartDashboard(){
 		SmartDashboard.putNumber("Elevator Cur Pos", getCurrentPosition());
-		//SmartDashboard.putNumber("Elevator Set Pos", getLastPosition());
+		SmartDashboard.putNumber("Elevator PID Error", elevatorMaster.getClosedLoopError(0));
+		SmartDashboard.putNumber("Elevator Setpoint", getSetpoint());
+		
 	
 		SmartDashboard.putBoolean("Elevator Bottom", isBottom());
 
@@ -160,17 +162,17 @@ public class Elevator extends Subsystem {
        	
 	}
 
-//	public int getLastPosition() {
-//		return lastPosition;
-//	}
-//	public void setLastPosition(int pos) {
-//		lastPosition = pos;
-//	}
+	public int getSetpoint() {
+		return setpoint;
+	}
+	public void setSetpoint(int pos) {
+		setpoint = pos;
+	}
 	
 	public void setPosition(double positionInches){
-//		Double d = new Double(positionInches);
-//		setLastPosition(d.intValue());
-//		double positionNative = inchesToNative(positionInches);
+		Double d = new Double(positionInches);
+		setSetpoint(d.intValue());
+		//double positionNative = inchesToNative(positionInches);
 		elevatorMaster.set(ControlMode.Position, positionInches);
 	}
 	
@@ -183,7 +185,9 @@ public class Elevator extends Subsystem {
 	}
 	
 	public boolean isOnTarget() {
-		if (elevatorMaster.getClosedLoopError(0) < 500) {
+//		if (elevatorMaster.getClosedLoopError(0) < 500) {
+		double distanceToTarget = Math.abs(getSetpoint() - getCurrentPosition());
+		if(distanceToTarget < 500){
 //			if (elevatorMaster.getMotorOutputPercent() < 0.1) {
 //				// Within error and motor has stopped moving alot so call it done.
 //				return true;

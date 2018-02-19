@@ -18,6 +18,7 @@ import org.usfirst.frc2876.PowerUp2018.commands.AutoDriveStraightDistance;
 import org.usfirst.frc2876.PowerUp2018.commands.AutoDriveTurn;
 import org.usfirst.frc2876.PowerUp2018.commands.CGAcquireCube;
 import org.usfirst.frc2876.PowerUp2018.commands.ElevatorDown;
+import org.usfirst.frc2876.PowerUp2018.commands.ElevatorGoToPosition;
 import org.usfirst.frc2876.PowerUp2018.commands.ElevatorMatchStart;
 import org.usfirst.frc2876.PowerUp2018.commands.ElevatorPosition;
 import org.usfirst.frc2876.PowerUp2018.commands.ElevatorStop;
@@ -95,7 +96,8 @@ public class OI {
         SmartDashboard.putData("XboxDrive", new XboxDrive());
         SmartDashboard.putData("AutoDriveDistance", new AutoDriveDistance(100));
         SmartDashboard.putData("AutoDriveTurn", new AutoDriveTurn(90));
-        SmartDashboard.putData("ElevatorPosition", new ElevatorPosition(80));
+//        SmartDashboard.putData("ElevatorPosition", new ElevatorPosition(80));
+        SmartDashboard.putData("ElevatorGoToPosition", new ElevatorGoToPosition(-5000));
         SmartDashboard.putData("AutoDriveStraightDistance", new AutoDriveStraightDistance(100));
         SmartDashboard.putData("Make a Box", new AutoCGBox());
         SmartDashboard.putData("AutoCGSwitch", new AutoCGSwitch());
