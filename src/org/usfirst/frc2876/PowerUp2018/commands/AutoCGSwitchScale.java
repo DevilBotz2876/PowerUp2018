@@ -46,7 +46,7 @@ public class AutoCGSwitchScale extends CommandGroup {
 			} else { // 'LL' or 'RL'
 			    fromSideDoSameScale(true);
 			}
-		} else if (Robot.getRobotPos() == Robot.RobotPosition.Left) {
+		} else if (Robot.getRobotPos() == Robot.RobotPosition.Right) {
 			if(Robot.isSwitchRight() && Robot.isScaleLeft()){
 				fromSideDoSameSwitch(false);
 			} else if (Robot.isSwitchLeft() && Robot.isScaleLeft()){
