@@ -19,6 +19,7 @@ public class AutoDriveStraightDistance extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	//Robot.driveTrain.setBrakeMode(true);
     	Robot.driveTrain.startDistance(m_distance);
     	Robot.driveTrain.startStraight();
     }
@@ -37,6 +38,7 @@ public class AutoDriveStraightDistance extends Command {
     protected void end() {
     	Robot.driveTrain.stopDistance();
     	Robot.driveTrain.stopStraight();
+    	//Robot.driveTrain.setBrakeMode(false);
     }
 
     // Called when another command which requires one or more of the same

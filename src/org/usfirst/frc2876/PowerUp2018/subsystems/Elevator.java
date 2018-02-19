@@ -99,7 +99,7 @@ public class Elevator extends Subsystem {
 		elevatorMaster.configNominalOutputReverse(0, kTimeoutMs);
 		// 1 means full power, 12v.  Perhaps make down smaller than up since gravity is helping go down.
 		elevatorMaster.configPeakOutputForward(.3, kTimeoutMs);
-		elevatorMaster.configPeakOutputReverse(-.3, kTimeoutMs);
+		elevatorMaster.configPeakOutputReverse(-.6, kTimeoutMs);
 		/*
 		 * set the allowable closed-loop error, Closed-Loop output will be
 		 * neutral within this range. See Table in Section 17.2.1 for native

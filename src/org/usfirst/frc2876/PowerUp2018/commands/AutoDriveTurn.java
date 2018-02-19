@@ -40,7 +40,7 @@ public class AutoDriveTurn extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-    	
+    	//Robot.driveTrain.setBrakeMode(true);
     	Robot.driveTrain.startTurn(m_degrees);
     }
 
@@ -60,6 +60,7 @@ public class AutoDriveTurn extends Command {
     @Override
     protected void end() {
     	Robot.driveTrain.stopTurn();
+    	//Robot.driveTrain.setBrakeMode(false);
     }
 
     // Called when another command which requires one or more of the same

@@ -159,7 +159,7 @@ public class DriveTrain extends Subsystem {
 		});
 		straightController.setOutputRange(-MAX_RPM, MAX_RPM);
 
-		distanceController = new PIDController(.04, 0, .02, 0, new AvgEncoder(), new PIDOutput() {
+		distanceController = new PIDController(.02, 0, .02, 0, new AvgEncoder(), new PIDOutput() {
 			public void pidWrite(double output) {
 				SmartDashboard.putNumber("DistancePid Output", output);
 				// leftMaster.set(-output);
@@ -172,24 +172,26 @@ public class DriveTrain extends Subsystem {
 		distanceController.setAbsoluteTolerance(2);
 		distanceController.setOutputRange(-MAX_RPM, MAX_RPM);
 
-		turnController = new PIDController(.011, 0, 0, 0, navx, new PIDOutput() {
+		turnController = new PIDController(.006, 0, 0, 0, navx, new PIDOutput() {
 			public void pidWrite(double output) {
+				output = output * MAX_RPM;
 				SmartDashboard.putNumber("TurnPid Output", output);
+				 double minMove = 700.0f;
+				 output = minRpm(output, minMove);
+				 SmartDashboard.putNumber("TurnPid min Output", output);
 
-				// double minMove = 500.0f;
-				// output = minRpm(output, minMove);
-
-				// double min = 0.25;
+				 // double min = 0.25;
 				// output = minRpm(output, min);
 				// SmartDashboard.putNumber("TurnPid min Output", output);
-				// leftMaster.set(-output);
-				// rightMaster.set(output);
-				tankDrive(output, -output);
+				leftMaster.set(output);
+				rightMaster.set(output);
+				//tankDrive(output, -output);
 
 			}
 		});
 
 		// turnController.setOutputRange(-0.5, 0.5);
+		//turnController.setOutputRange(-MAX_RPM, MAX_RPM);
 		turnController.setInputRange(-180.0f, 180.0f);
 		turnController.setAbsoluteTolerance(kTurnToleranceDegrees);
 		turnController.setContinuous(true);
@@ -350,10 +352,16 @@ public class DriveTrain extends Subsystem {
 			left = distance + straight;
 			right = distance;
 		}
-		leftMaster.set(left * MAX_RPM);
-		rightMaster.set(-right * MAX_RPM);
+		left = left * MAX_RPM;
+		right = -right * MAX_RPM;
+		
+		left = minRpm(left, 500);
+		right = minRpm(right, 500);
+		
+		leftMaster.set(left);
+		rightMaster.set(right);
 		SmartDashboard.putNumber("Left Side", left);
-		SmartDashboard.putNumber("Right Side", -right);
+		SmartDashboard.putNumber("Right Side", right);
 	}
 
 	public void tankDrive(double leftSpeed, double rightSpeed) {

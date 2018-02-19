@@ -11,6 +11,7 @@
 
 package org.usfirst.frc2876.PowerUp2018;
 
+import org.usfirst.frc2876.PowerUp2018.commands.AutoCGSwitchScale;
 import org.usfirst.frc2876.PowerUp2018.commands.AutonomousCommand;
 import org.usfirst.frc2876.PowerUp2018.subsystems.DriveTrain;
 import org.usfirst.frc2876.PowerUp2018.subsystems.Intake;
@@ -108,6 +109,8 @@ public class Robot extends TimedRobot {
 
     @Override
     public void autonomousInit() {
+    	Robot.elevator.resetPositionValue(RobotMap.ELEVATOR_POSITION_KICKSTAND);
+    	
     	// Get FMS data
         int retries = 100;
     	gameData = DriverStation.getInstance().getGameSpecificMessage();
@@ -125,8 +128,9 @@ public class Robot extends TimedRobot {
     	//robotPos = RobotPosition.Center;  // TODO - implement robot position from smartdashboard
     	robotPos = startChooser.getSelected();
     	
-        autonomousCommand = chooser.getSelected();
+        //autonomousCommand = chooser.getSelected();
         // schedule the autonomous command (example)
+    	autonomousCommand = new AutoCGSwitchScale();
         if (autonomousCommand != null) autonomousCommand.start();
     }
 
