@@ -49,24 +49,24 @@ public class XboxDrive extends Command {
     @Override
     protected void execute() {
     	Joystick xbox = Robot.oi.getXboxController();
-    	if (!Robot.driveTrain.isTurnPIDRunning() && !Robot.driveTrain.isDistancePIDRunning()){
-//    		Robot.driveTrain.arcadeDrive(-Robot.oi.getRightX(), Robot.oi.getLeftY());
-//    		Robot.driveTrain.tankDrive(Robot.oi.getLeftY(), -Robot.oi.getRightY());
-//    		Robot.driveTrain.setVelocityArcadeJoysticks(0, -1);
-//    		Robot.driveTrain.arcadeDrive(0,0);
-    		
-    		if(Math.abs(Robot.oi.getRightX()) <= .1 && !(Math.abs(Robot.oi.getLeftY()) <= .1)){
-    			if(isStraightBeginning){
-    				Robot.driveTrain.startStraight();
-    				isStraightBeginning = false;
-    			}
-    			Robot.driveTrain.setStraightVelocityArcadeJoysticks(Robot.oi.getLeftY());
-    		}else{
-    			isStraightBeginning = true;
-    			Robot.driveTrain.stopStraight();
+//    	if (!Robot.driveTrain.isTurnPIDRunning() && !Robot.driveTrain.isDistancePIDRunning()){
+////    		Robot.driveTrain.arcadeDrive(-Robot.oi.getRightX(), Robot.oi.getLeftY());
+////    		Robot.driveTrain.tankDrive(Robot.oi.getLeftY(), -Robot.oi.getRightY());
+////    		Robot.driveTrain.setVelocityArcadeJoysticks(0, -1);
+////    		Robot.driveTrain.arcadeDrive(0,0);
+//    		
+//    		if(Math.abs(Robot.oi.getRightX()) <= .1 && !(Math.abs(Robot.oi.getLeftY()) <= .1)){
+//    			if(isStraightBeginning){
+//    				Robot.driveTrain.startStraight();
+//    				isStraightBeginning = false;
+//    			}
+//    			Robot.driveTrain.setStraightVelocityArcadeJoysticks(Robot.oi.getLeftY());
+//    		}else{
+//    			isStraightBeginning = true;
+//    			Robot.driveTrain.stopStraight();
     			Robot.driveTrain.setVelocityArcadeJoysticks(Robot.oi.getRightX(), Robot.oi.getLeftY());
-    		}
-    	}
+//    		}
+//    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
