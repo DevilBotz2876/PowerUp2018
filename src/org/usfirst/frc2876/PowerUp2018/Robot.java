@@ -109,7 +109,18 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
     	// Get FMS data
+        int retries = 100;
     	gameData = DriverStation.getInstance().getGameSpecificMessage();
+        while (gameData.length() < 2 && retries > 0) {
+            retries--;
+            try {
+                Thread.sleep(5);
+            } catch (InterruptedException ie) {
+                // ignore the interrupted exception
+            }
+            gameData = DriverStation.getInstance().getGameSpecificMessage();
+        }
+        
     	// Get Robot Position from SmartDashboard
     	//robotPos = RobotPosition.Center;  // TODO - implement robot position from smartdashboard
     	robotPos = startChooser.getSelected();
