@@ -150,6 +150,7 @@ public class Elevator extends Subsystem {
 		SmartDashboard.putNumber("Elevator Cur Pos", getCurrentPosition());
 		SmartDashboard.putNumber("Elevator PID Error", elevatorMaster.getClosedLoopError(0));
 		SmartDashboard.putNumber("Elevator Setpoint", getSetpoint());
+		SmartDashboard.putBoolean("Elevator onTarget", isOnTarget());
 		
 	
 		SmartDashboard.putBoolean("Elevator Bottom", isBottom());
@@ -213,7 +214,7 @@ public class Elevator extends Subsystem {
 	}
 	
 	public boolean isBottom(){
-		if(usElevatorSensor.getRangeInches() >= 1.0 && usElevatorSensor.getRangeInches() < 8.0){
+		if(usElevatorSensor.getRangeInches() >= 1.0 && usElevatorSensor.getRangeInches() < 10.0){
 			
 			return true;
 		}

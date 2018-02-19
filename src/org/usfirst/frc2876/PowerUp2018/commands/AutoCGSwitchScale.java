@@ -33,7 +33,8 @@ public class AutoCGSwitchScale extends CommandGroup {
 				fromSideDoSameSwitch(true);
 			} else if (Robot.isSwitchRight() && Robot.isScaleRight()){
 				fromSideDoOppositeScale(true);
-			} else { // 'LL' or 'RL'
+			} else {
+				// Go to scale on same side as robot start.
 			    fromSideDoSameScale(true);
 			}
 		} else if (Robot.getRobotPos() == Robot.RobotPosition.Right) {
@@ -41,13 +42,16 @@ public class AutoCGSwitchScale extends CommandGroup {
 				fromSideDoSameSwitch(false);
 			} else if (Robot.isSwitchLeft() && Robot.isScaleLeft()){
 				fromSideDoOppositeScale(false);
-			} else { // 'RR' or 'LR'
+			} else {
 			    fromSideDoSameScale(false);
 			}
 		} else {
 			// Huh?  RobotPos is screwed up!
+			// Let's drive at slight right angle and log to a log file
 		}
     	
+		// Raise to switch / scale height
+		//addSequential(new somecommandwehaventwrittenyet)
 		//addSequential(new IntakeForward());
     }
     

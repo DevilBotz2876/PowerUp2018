@@ -63,11 +63,13 @@ public class RobotMap {
     public static WPI_TalonSRX elevatorFollower;
     
     public static String SD_KEY_ELEVATOR_POSITION_SETPOINT = "ElevatorPositionSetpoint";
-    public static int ELEVATOR_POSITION_SCALE_CUBE = -10000;
-    public static int ELEVATOR_POSITION_SWITCH_CUBE = -6000;
-    public static int ELEVATOR_POSITION_DRIVE_CUBE = -2000;
-    public static int ELEVATOR_POSITION_ACQUIRE_CUBE = -2000;
+    public static int ELEVATOR_POSITION_SCALE_CUBE = -26336;
+    public static int ELEVATOR_POSITION_SLOW_DRIVE = -15000;
+    public static int ELEVATOR_POSITION_SWITCH_CUBE = -11292;
+    public static int ELEVATOR_POSITION_DRIVE_CUBE = -2700;
+    public static int ELEVATOR_POSITION_ACQUIRE_CUBE = -2364;
     public static int ELEVATOR_POSITION_KICKSTAND = 0;
+    
     
     
     public static void init() {

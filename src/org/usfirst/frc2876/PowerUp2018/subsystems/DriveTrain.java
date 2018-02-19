@@ -248,7 +248,7 @@ public class DriveTrain extends Subsystem {
 	// Don't let drivers move robot too fast when CG is high. This will need
 	// tuning.
 	public double adjustJoystickElevator(double speed) {
-		if (Robot.elevator.getCurrentPosition() > RobotMap.ELEVATOR_POSITION_SWITCH_CUBE) {
+		if (Robot.elevator.getCurrentPosition() > RobotMap.ELEVATOR_POSITION_SLOW_DRIVE) {
 			if (speed > .5) {
 				return .5;
 			} else if (speed < -.5) {
@@ -280,8 +280,8 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void setVelocityArcadeJoysticks(double speed, double rotate) {
-//		speed = adjustJoystickElevator(speed);
-//		rotate = adjustJoystickElevator(rotate);
+		speed = adjustJoystickElevator(speed);
+		rotate = adjustJoystickElevator(rotate);
 		if (speed > 0.0) {
 			if (rotate > 0.0) {
 				leftMaster.set(ControlMode.Velocity, (speed - rotate) * MAX_RPM);
