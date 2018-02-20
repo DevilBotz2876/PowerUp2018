@@ -66,12 +66,14 @@ public class RobotMap {
 
     // Measured this value, but start with smaller so we don't break elevator while testing
     //public static int ELEVATOR_POSITION_SCALE_CUBE = -26336;
-    public static int ELEVATOR_POSITION_SCALE_CUBE = -25336;
+    public static int ELEVATOR_POSITION_SCALE_CUBE = -27000;
     public static int ELEVATOR_POSITION_SLOW_DRIVE = -15000;
     public static int ELEVATOR_POSITION_SWITCH_CUBE = -11292;
     public static int ELEVATOR_POSITION_DRIVE_CUBE = -2700;
     public static int ELEVATOR_POSITION_ACQUIRE_CUBE = -2364;
     public static int ELEVATOR_POSITION_KICKSTAND = 0;
+    
+    public static double SENSITIVE_DRIVE_SPEED = 0.25;
     
     
     
