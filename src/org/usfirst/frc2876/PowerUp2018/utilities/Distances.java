@@ -12,6 +12,6 @@ public class Distances {
 	public static final int WALL_TO_PLATFORM_ZONE = 240;
 	public static final int PLATFORM_ZONE_WIDTH = 160;
 	public static final int PLATFORM_ZONE_TO_SCALE = 50;
-	public static final int AT_SCALE = -12;
+	public static final int AT_SCALE = -6;
 	
 }

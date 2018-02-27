@@ -135,10 +135,10 @@ public class OI {
         rightBumper = new JoystickButton(xboxController, RIGHT_BUMPER);
         rightBumper.whileHeld(new IntakeForward());
 
-        rightTrigger = new JoystickButton(xboxController, RIGHT_TRIGGER);
-        rightTrigger.whileHeld(new ElevatorDown());
-        leftTrigger = new JoystickButton(xboxController, LEFT_TRIGGER);
-        rightTrigger.whileHeld(new ElevatorUp());
+//        rightTrigger = new JoystickButton(xboxController, RIGHT_TRIGGER);
+//        rightTrigger.whileHeld(new ElevatorDown());
+//        leftTrigger = new JoystickButton(xboxController, LEFT_TRIGGER);
+//        rightTrigger.whileHeld(new ElevatorUp());
         
     }
    
