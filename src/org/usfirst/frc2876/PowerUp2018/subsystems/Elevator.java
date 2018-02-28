@@ -198,6 +198,14 @@ public class Elevator extends Subsystem {
 		return false;
 	}
 	
+	public void elevatorTriggers(double up, double down) {
+		if (up > .1 && !isTop()) {
+			elevatorMaster.set(-.3);
+		} else if (down > .1 && !isBottom()) {
+			elevatorMaster.set(.3);
+		}
+	}
+	
 	public void Up() {
 		elevatorMaster.set(-.3);
 
@@ -215,7 +223,13 @@ public class Elevator extends Subsystem {
 	
 	public boolean isBottom(){
 		if(usElevatorSensor.getRangeInches() >= 1.0 && usElevatorSensor.getRangeInches() < 10.0){
-			
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean isTop(){
+		if(getCurrentPosition() <= RobotMap.ELEVATOR_POSITION_SCALE_CUBE){
 			return true;
 		}
 		return false;

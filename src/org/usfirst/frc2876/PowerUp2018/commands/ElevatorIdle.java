@@ -20,7 +20,14 @@ public class ElevatorIdle extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
+    	double leftTrigger = Robot.oi.getLeftTrigger();
+		double rightTrigger = Robot.oi.getRightTrigger();
+		
+		if (leftTrigger > .1 || rightTrigger > .1){
+			Robot.elevator.elevatorTriggers(rightTrigger, leftTrigger);
+		} else {
+			Robot.elevator.setPosition(Robot.elevator.getCurrentPosition());
+		}
     }
 
     // Make this return true when this Command no longer needs to run execute()
