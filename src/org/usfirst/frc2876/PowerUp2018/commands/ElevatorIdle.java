@@ -12,6 +12,8 @@ public class ElevatorIdle extends Command {
     public ElevatorIdle() {
     	requires(Robot.elevator);
     }
+    
+    private boolean isPosSet = true;
 
     // Called just before this Command runs the first time
     protected void initialize() {
@@ -25,8 +27,10 @@ public class ElevatorIdle extends Command {
 		
 		if (leftTrigger > .1 || rightTrigger > .1){
 			Robot.elevator.elevatorTriggers(rightTrigger, leftTrigger);
-		} else {
+			isPosSet = false;
+		} else if(!isPosSet){
 			Robot.elevator.setPosition(Robot.elevator.getCurrentPosition());
+			isPosSet = true;
 		}
     }
 

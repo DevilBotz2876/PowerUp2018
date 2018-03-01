@@ -6,6 +6,7 @@ public class Distances {
 	public static final int CENTER_WALL_TO_TURN = 20;
 	public static final int CENTER_TURN_TO_SWITCH = 76;
 	public static final int CENTER_DRIVE_TO_SWITCH_AFTER_TURN = 45;
+	public static final int WALL_TO_AUTOLINE = 125;
 	public static final int WALL_TO_SWITCH = 146;
 	public static final int AT_SWITCH = 16;
 	public static final int WALL_TO_SCALE = 318;

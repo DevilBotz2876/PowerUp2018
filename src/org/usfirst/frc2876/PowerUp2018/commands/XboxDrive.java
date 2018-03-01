@@ -64,9 +64,7 @@ public class XboxDrive extends Command {
 //    		}else{
 //    			isStraightBeginning = true;
 //    			Robot.driveTrain.stopStraight();
-    			Robot.driveTrain.setVelocityArcadeJoysticks(
-    					Robot.driveTrain.adjustJoystickElevator(Robot.oi.getRightX()), 
-    					Robot.driveTrain.adjustJoystickElevator(Robot.oi.getLeftY()));
+    			Robot.driveTrain.setVelocityArcadeJoysticks(Robot.oi.getRightX(), Robot.oi.getLeftY());
 //    		}
 //    	}
     }

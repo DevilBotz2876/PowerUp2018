@@ -282,8 +282,8 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void setVelocityArcadeJoysticks(double speed, double rotate) {
-//		rotate = adjustJoystickElevator(rotate);
-//		speed = adjustJoystickElevator(speed);
+		rotate = adjustJoystickElevator(rotate);
+		speed = adjustJoystickElevator(speed);
 		if (speed > 0.0) {
 			if (rotate > 0.0) {
 				leftMaster.set(ControlMode.Velocity, (speed - rotate) * MAX_RPM);
