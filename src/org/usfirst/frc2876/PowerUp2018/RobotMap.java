@@ -68,7 +68,8 @@ public class RobotMap {
     //public static int ELEVATOR_POSITION_SCALE_CUBE = -26336;
     public static int ELEVATOR_POSITION_SCALE_CUBE = -27000;
     public static int ELEVATOR_POSITION_SLOW_DRIVE = -15000;
-    public static int ELEVATOR_POSITION_SWITCH_CUBE = -11292;
+    // was -11292, raise it by 1k to account for cube slipping/turning and hanging below the switch wall.
+    public static int ELEVATOR_POSITION_SWITCH_CUBE = -13292;
     public static int ELEVATOR_POSITION_DRIVE_CUBE = -2700;
     public static int ELEVATOR_POSITION_ACQUIRE_CUBE = -2364;
     public static int ELEVATOR_POSITION_KICKSTAND = 0;
@@ -126,10 +127,10 @@ public class RobotMap {
         ai = new AnalogInput(3);
        // hall_digi = new DigitalInput(2);
         
-        rightMaster = driveTrainRightTalonSRX1;
-        rightFollower = driveTrainRightTalonSRX2;
-        leftMaster = driveTrainLeftTalonSRX4;
-        leftFollower = driveTrainLeftTalonSRX3;
+        rightMaster = driveTrainRightTalonSRX2;
+        rightFollower = driveTrainRightTalonSRX1;
+        leftMaster = driveTrainLeftTalonSRX3;
+        leftFollower = driveTrainLeftTalonSRX4;
         
         rightFollower.set(ControlMode.Follower, rightMaster.getDeviceID());
         leftFollower.set(ControlMode.Follower, leftMaster.getDeviceID());

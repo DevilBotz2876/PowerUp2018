@@ -49,7 +49,7 @@ public class Robot extends TimedRobot {
     public static RobotPosition robotPos;
     
     SendableChooser<RobotPosition> startPosChooser = new SendableChooser<>();
-    SendableChooser<Command> autoChooser = new SendableChooser<>();
+//    SendableChooser<Command> autoChooser = new SendableChooser<>();
     Command autonomousCommand;
    
     /**
@@ -82,9 +82,9 @@ public class Robot extends TimedRobot {
         startPosChooser.addObject("Right", RobotPosition.Right);
         SmartDashboard.putData("Start Position", startPosChooser);
         
-        autoChooser.addDefault("Switch Scale Chooser", new AutoCGSwitchScale());
-        autoChooser.addObject("Auto Line", new AutoCGLine());
-        SmartDashboard.putData("Autonomous Choice", autoChooser);
+//        autoChooser.addDefault("Switch Scale Chooser", new AutoCGSwitchScale());
+//        autoChooser.addObject("Auto Line", new AutoCGLine());
+//        SmartDashboard.putData("Autonomous Choice", autoChooser);
     }
 
     /**
@@ -122,7 +122,8 @@ public class Robot extends TimedRobot {
     	robotPos = startPosChooser.getSelected();
     	
     	// Get the autonomous command to run
-        autonomousCommand = autoChooser.getSelected();
+//        autonomousCommand = autoChooser.getSelected();
+    	autonomousCommand = new AutoCGSwitchScale();
         if (autonomousCommand != null) autonomousCommand.start();
     }
 
@@ -154,7 +155,7 @@ public class Robot extends TimedRobot {
     	//Robot.driveTrain.resetEncoders();
     	//Robot.elevator.resetPositionValue();
         //driveTrain.navx.reset();
-        //driveTrain.initializeCamera();
+        driveTrain.initializeCamera();
     }
 
     /**

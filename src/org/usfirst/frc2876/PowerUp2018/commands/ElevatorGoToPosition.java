@@ -38,9 +38,9 @@ public class ElevatorGoToPosition extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		if(Robot.elevator.isBottom()){
-			Robot.elevator.setPosition(RobotMap.ELEVATOR_POSITION_SWITCH_CUBE);
-		}
+//		if(Robot.elevator.isBottom()){
+//			Robot.elevator.setPosition(RobotMap.ELEVATOR_POSITION_SWITCH_CUBE);
+//		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

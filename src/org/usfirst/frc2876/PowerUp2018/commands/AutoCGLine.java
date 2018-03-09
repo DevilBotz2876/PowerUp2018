@@ -15,6 +15,7 @@ public class AutoCGLine extends CommandGroup {
 		// TODO we need to raise arms to release kick-stand
 		// addParallel(new ElevatorPosition(10));
 
+		System.out.println("Not Working");
 		if (Robot.getRobotPos() == Robot.RobotPosition.Center) {
 			int angleMultiplier = Robot.isSwitchLeft() ? 1 : -1;
 			addSequential(new AutoDriveStraightDistance(Distances.CENTER_WALL_TO_TURN));

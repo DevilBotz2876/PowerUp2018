@@ -80,8 +80,7 @@ public class Intake extends Subsystem {
     }
     
     public void updateSmartDashboard() {
-		SmartDashboard.putNumber("Intake Ultrasonic  in mm ",usIntakeSensor.getRangeMM());
-
+//		SmartDashboard.putNumber("Intake Ultrasonic  in mm ",usIntakeSensor.getRangeMM());
   
     	SmartDashboard.putNumber("Intake Ultrasonic distance in Inches ",usIntakeSensor.getRangeInches());
       	usIntakeSensor.ping();

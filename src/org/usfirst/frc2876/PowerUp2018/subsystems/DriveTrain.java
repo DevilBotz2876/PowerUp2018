@@ -225,12 +225,13 @@ public class DriveTrain extends Subsystem {
 		// pressed/moved send small output to motors. When joystick
 		// is press/moved alot send BIG output to motors.
 		// y=a(x^3)+(1-a)x
-		double a = .4;
+		double a = .2;
 		return (a * (speed * speed * speed)) + ((1 - a) * speed);
 	}
 
 	private double adjustRotate(double rotate) {
 		// rotate *= .7;
+	
 		return adjustSpeed(rotate);
 	}
 
@@ -282,8 +283,10 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void setVelocityArcadeJoysticks(double speed, double rotate) {
-		rotate = adjustJoystickElevator(rotate);
-		speed = adjustJoystickElevator(speed);
+//		rotate = adjustJoystickElevator(rotate);
+//		speed = adjustJoystickElevator(speed);
+		speed = adjustSpeed(speed);
+		rotate = adjustRotate(rotate);
 		if (speed > 0.0) {
 			if (rotate > 0.0) {
 				leftMaster.set(ControlMode.Velocity, (speed - rotate) * MAX_RPM);
@@ -382,23 +385,23 @@ public class DriveTrain extends Subsystem {
 
 		SmartDashboard.putData("NavX", navx);
 		SmartDashboard.putNumber("navX angle", navx.getAngle());
-		SmartDashboard.putBoolean("is navx connecticut?", navx.isConnected());
-		SmartDashboard.putData("Differential Drive Data", differentialDrive);
-		SmartDashboard.putBoolean("is navX moving", navx.isMoving());
-		SmartDashboard.putBoolean("is navX rotating", navx.isRotating());
+//		SmartDashboard.putBoolean("is navx connecticut?", navx.isConnected());
+//		SmartDashboard.putData("Differential Drive Data", differentialDrive);
+//		SmartDashboard.putBoolean("is navX moving", navx.isMoving());
+//		SmartDashboard.putBoolean("is navX rotating", navx.isRotating());
 
 		SmartDashboard.putNumber("Right Velocity", rightMaster.getSelectedSensorVelocity(0));
 		SmartDashboard.putNumber("Left Velocity", leftMaster.getSelectedSensorVelocity(0));
 
-		SmartDashboard.putData("DistancePID", distanceController);
-		SmartDashboard.putNumber("DistancePID Error", distanceController.getError());
+//		SmartDashboard.putData("DistancePID", distanceController);
+//		SmartDashboard.putNumber("DistancePID Error", distanceController.getError());
 
-		SmartDashboard.putData("TurnPID", turnController);
-		SmartDashboard.putNumber("TurnPID Error", turnController.getError());
+//		SmartDashboard.putData("TurnPID", turnController);
+//		SmartDashboard.putNumber("TurnPID Error", turnController.getError());
 
-		SmartDashboard.putData("StraightPID", straightController);
-		SmartDashboard.putNumber("StraightPID Error", straightController.getError());
-		SmartDashboard.putBoolean("isStraightPIDRunning", isStraightRunning());
+//		SmartDashboard.putData("StraightPID", straightController);
+//		SmartDashboard.putNumber("StraightPID Error", straightController.getError());
+//		SmartDashboard.putBoolean("isStraightPIDRunning", isStraightRunning());
 
 		getDistance();
 

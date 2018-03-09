@@ -22,6 +22,7 @@ public class AutoDriveStraightDistance extends Command {
     	//Robot.driveTrain.setBrakeMode(true);
     	Robot.driveTrain.startDistance(m_distance);
     	Robot.driveTrain.startStraight();
+    	Robot.oi.putSmartDashboardDriveCommand(this);
     }
 
     // Called repeatedly when this Command is scheduled to run
