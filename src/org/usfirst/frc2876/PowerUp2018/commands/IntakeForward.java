@@ -43,7 +43,7 @@ public class IntakeForward extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-    	Robot.intake.spinInwards(-1.0);
+    	Robot.intake.spinInwards(-.8);
     }
 
     // Make this return true when this Command no longer needs to run execute()

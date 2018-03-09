@@ -99,7 +99,7 @@ public class Elevator extends Subsystem {
 		elevatorMaster.configNominalOutputReverse(0, kTimeoutMs);
 		// 1 means full power, 12v.  Perhaps make down smaller than up since gravity is helping go down.
 		elevatorMaster.configPeakOutputForward(.3, kTimeoutMs);
-		elevatorMaster.configPeakOutputReverse(-.6, kTimeoutMs);
+		elevatorMaster.configPeakOutputReverse(-.9, kTimeoutMs);
 		/*
 		 * set the allowable closed-loop error, Closed-Loop output will be
 		 * neutral within this range. See Table in Section 17.2.1 for native
@@ -154,8 +154,9 @@ public class Elevator extends Subsystem {
 		
 	
 		SmartDashboard.putBoolean("Elevator Bottom", isBottom());
+		SmartDashboard.putBoolean("Elevator Top", isTop());
 
-		SmartDashboard.putNumber("Elevator Ultrasonic in mm ", usElevatorSensor.getRangeMM());
+//		SmartDashboard.putNumber("Elevator Ultrasonic in mm ", usElevatorSensor.getRangeMM());
     	SmartDashboard.putNumber("Elevator Ultrasonic distance in Inches ",usElevatorSensor.getRangeInches());
       	usElevatorSensor.ping();
     	SmartDashboard.putBoolean("Elevator Ultrasonic Enabled", usElevatorSensor.isEnabled());
@@ -200,7 +201,7 @@ public class Elevator extends Subsystem {
 	
 	public void elevatorTriggers(double up, double down) {
 		if (up > .1 && !isTop()) {
-			elevatorMaster.set(-.3);
+			elevatorMaster.set(-.5);
 		} else if (down > .1 && !isBottom()) {
 			elevatorMaster.set(.3);
 		}

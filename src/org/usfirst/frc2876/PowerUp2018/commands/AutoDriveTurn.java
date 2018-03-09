@@ -42,6 +42,7 @@ public class AutoDriveTurn extends Command {
     protected void initialize() {
     	//Robot.driveTrain.setBrakeMode(true);
     	Robot.driveTrain.startTurn(m_degrees);
+    	Robot.oi.putSmartDashboardDriveCommand(this);
     }
 
     // Called repeatedly when this Command is scheduled to run
