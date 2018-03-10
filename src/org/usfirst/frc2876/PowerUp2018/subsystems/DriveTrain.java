@@ -387,21 +387,22 @@ public class DriveTrain extends Subsystem {
 		SmartDashboard.putNumber("navX angle", navx.getAngle());
 //		SmartDashboard.putBoolean("is navx connecticut?", navx.isConnected());
 //		SmartDashboard.putData("Differential Drive Data", differentialDrive);
-//		SmartDashboard.putBoolean("is navX moving", navx.isMoving());
+		SmartDashboard.putBoolean("is navX moving", navx.isMoving());
+		SmartDashboard.putBoolean("is robot moving", this.isMoving());
 //		SmartDashboard.putBoolean("is navX rotating", navx.isRotating());
 
 		SmartDashboard.putNumber("Right Velocity", rightMaster.getSelectedSensorVelocity(0));
 		SmartDashboard.putNumber("Left Velocity", leftMaster.getSelectedSensorVelocity(0));
 
-//		SmartDashboard.putData("DistancePID", distanceController);
-//		SmartDashboard.putNumber("DistancePID Error", distanceController.getError());
+		SmartDashboard.putData("DistancePID", distanceController);
+		SmartDashboard.putNumber("DistancePID Error", distanceController.getError());
 
 //		SmartDashboard.putData("TurnPID", turnController);
 //		SmartDashboard.putNumber("TurnPID Error", turnController.getError());
 
-//		SmartDashboard.putData("StraightPID", straightController);
-//		SmartDashboard.putNumber("StraightPID Error", straightController.getError());
-//		SmartDashboard.putBoolean("isStraightPIDRunning", isStraightRunning());
+		SmartDashboard.putData("StraightPID", straightController);
+		SmartDashboard.putNumber("StraightPID Error", straightController.getError());
+		SmartDashboard.putBoolean("isStraightPIDRunning", isStraightRunning());
 
 		getDistance();
 
@@ -466,7 +467,7 @@ public class DriveTrain extends Subsystem {
 	public PIDController getDistancePID() {
 		return distanceController;
 	}
-
+	
 	// _______________________________________________________________________________________________________
 
 	public PIDController getStraightPID() {
@@ -573,5 +574,16 @@ public class DriveTrain extends Subsystem {
 		}
 
 	}
-
+	
+//	public recordEncoders() {
+//		
+//	}
+//	
+//	public boolean isMovingSinceLastEncoderRecording(){
+//		
+//	}
+	
+	public boolean isMoving() {
+		return navx.isMoving();
+	}
 }

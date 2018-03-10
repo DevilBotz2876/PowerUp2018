@@ -106,7 +106,7 @@ public class OI {
 //        SmartDashboard.putData("AutoDriveTurn", new AutoDriveTurn(90));
 //        SmartDashboard.putData("ElevatorPosition", new ElevatorPosition(80));
 //        SmartDashboard.putData("ElevatorGoToPosition", new ElevatorGoToPosition(-5000));
-//        SmartDashboard.putData("AutoDriveStraightDistance", new AutoDriveStraightDistance(100));
+        SmartDashboard.putData("AutoDriveStraightDistance", new AutoDriveStraightDistance(100));
 //        SmartDashboard.putData("Make a Box", new AutoCGBox());
 //        SmartDashboard.putData("CGAcquireCube", new CGAcquireCube());
         
