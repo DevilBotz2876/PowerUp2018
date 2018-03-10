@@ -23,8 +23,8 @@ import org.usfirst.frc2876.PowerUp2018.commands.ElevatorMatchStart;
 import org.usfirst.frc2876.PowerUp2018.commands.ElevatorPosition;
 import org.usfirst.frc2876.PowerUp2018.commands.ElevatorStop;
 import org.usfirst.frc2876.PowerUp2018.commands.ElevatorUp;
-import org.usfirst.frc2876.PowerUp2018.commands.IntakeBackward;
-import org.usfirst.frc2876.PowerUp2018.commands.IntakeForward;
+import org.usfirst.frc2876.PowerUp2018.commands.IntakeOut;
+import org.usfirst.frc2876.PowerUp2018.commands.IntakeIn;
 import org.usfirst.frc2876.PowerUp2018.commands.IntakeStop;
 import org.usfirst.frc2876.PowerUp2018.commands.XboxDrive;
 
@@ -131,10 +131,10 @@ public class OI {
         yButton.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_SCALE_CUBE));
         
         leftBumper = new JoystickButton(xboxController, LEFT_BUMPER);
-        leftBumper.whileHeld(new IntakeBackward());
+        leftBumper.whileHeld(new IntakeOut());
         
         rightBumper = new JoystickButton(xboxController, RIGHT_BUMPER);
-        rightBumper.whileHeld(new IntakeForward());
+        rightBumper.whileHeld(new IntakeIn());
 
 //        rightTrigger = new JoystickButton(xboxController, RIGHT_TRIGGER);
 //        rightTrigger.whileHeld(new ElevatorDown());

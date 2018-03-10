@@ -12,7 +12,7 @@ public class CGAcquireCube extends CommandGroup {
 	
 	public CGAcquireCube() {
 		addSequential(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_ACQUIRE_CUBE));
-		addSequential(new IntakeForward());
+		addSequential(new IntakeIn());
 		addSequential(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_DRIVE_CUBE));
 	}
 
