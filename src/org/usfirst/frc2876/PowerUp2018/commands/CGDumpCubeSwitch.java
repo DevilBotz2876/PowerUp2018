@@ -12,7 +12,7 @@ public class CGDumpCubeSwitch extends CommandGroup {
 	
 	public CGDumpCubeSwitch() {
 		addSequential(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_SWITCH_CUBE));
-		addSequential(new IntakeBackward());
+		addSequential(new IntakeOut());
 		addSequential(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_DRIVE_CUBE));
 	}
 
