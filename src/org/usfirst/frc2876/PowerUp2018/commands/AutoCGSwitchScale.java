@@ -60,7 +60,7 @@ public class AutoCGSwitchScale extends CommandGroup {
     	
 		if (expel) {
 		// Expel cube
-			addSequential(new IntakeBackward(), 2);
+			addSequential(new IntakeOut(), 2);
 		}
     }
     
