@@ -44,5 +44,9 @@ public class IntakeRight extends Intake {
     public void out() {
     	super.outRight();
     }
+    
+    public void stop() {
+    	super.stopRight();
+    }
 }
 
