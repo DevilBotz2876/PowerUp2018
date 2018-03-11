@@ -121,10 +121,10 @@ public class OI {
         yButton.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_SCALE_CUBE));
         
         leftBumper = new JoystickButton(xboxController, LEFT_BUMPER);
-        leftBumper.whileHeld(new IntakeOut());
+        //leftBumper.whileHeld(new IntakeOut());
         
         rightBumper = new JoystickButton(xboxController, RIGHT_BUMPER);
-        rightBumper.whileHeld(new IntakeIn());
+        //rightBumper.whileHeld(new IntakeIn());
 
 //        rightTrigger = new JoystickButton(xboxController, RIGHT_TRIGGER);
 //        rightTrigger.whileHeld(new ElevatorDown());
