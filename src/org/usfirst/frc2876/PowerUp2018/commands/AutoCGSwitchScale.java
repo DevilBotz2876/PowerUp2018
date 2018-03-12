@@ -24,7 +24,7 @@ public class AutoCGSwitchScale extends CommandGroup {
     	boolean expel = true;
     			System.out.println("Working");
 		// we need to raise arms to release kick-stand
-    	addParallel(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_SWITCH_CUBE));
+//    	addParallel(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_SWITCH_CUBE));
 
 		if (Robot.getRobotPos() == Robot.RobotPosition.Center) {
 			fromCenterDoSwitch();
@@ -60,18 +60,25 @@ public class AutoCGSwitchScale extends CommandGroup {
     	
 		if (expel) {
 		// Expel cube
-			addSequential(new IntakeBackward(), 2);
+//			addSequential(new IntakeBackward(), 2);
 		}
+//		System.out.println("Auto finished");
+//		System.out.print("\n");
     }
     
     private void fromCenterDoSwitch() {
 		int angleMultiplier = Robot.isSwitchLeft() ? -1 : 1;
 		int fudgeDistance = Robot.isSwitchLeft() ? -3 : -6;
+		System.out.println("fromCenterDoSwitch 1");
 		addSequential(new AutoDriveStraightDistance(Distances.CENTER_WALL_TO_TURN));
 		addSequential(new AutoDriveTurn(60 * angleMultiplier));
+		System.out.println("fromCenterDoSwitch 2");
 		addSequential(new AutoDriveStraightDistance(Distances.CENTER_TURN_TO_SWITCH));
 		addSequential(new AutoDriveTurn(-60 * angleMultiplier));
+		System.out.println("fromCenterDoSwitch 3");
 		addSequential(new AutoDriveStraightDistance(Distances.CENTER_DRIVE_TO_SWITCH_AFTER_TURN + fudgeDistance));
+		System.out.println("fromCenterDoSwitch finished");
+
     }
     
     private void fromSideDoSameSwitch(boolean turnClockwise) {
@@ -96,7 +103,7 @@ public class AutoCGSwitchScale extends CommandGroup {
 		addSequential(new AutoDriveStraightDistance(Distances.WALL_TO_SCALE));
 		addSequential(new AutoDriveTurn(70 * turnAngleModifier));
 		addSequential(new AutoDriveStraightDistance(Distances.AT_SCALE));
-		addSequential(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_SCALE_CUBE));
+//		addSequential(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_SCALE_CUBE));
     }
     
     private void fromUnknownDoAutoLine(){
