@@ -118,23 +118,23 @@ public class OI {
         createSmartDashboardNumber("kDistanceTolerance", 2.0);
         createSmartDashboardString("DriveTalonMode", ControlMode.PercentOutput.name());
  	
-        aButton = new JoystickButton(xboxController, A_BUTTON);
-        aButton.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_ACQUIRE_CUBE));
-        
-        bButton = new JoystickButton(xboxController, B_BUTTON);
-        bButton.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_SWITCH_CUBE));
-        
-        xButton = new JoystickButton(xboxController, X_BUTTON);
-        xButton.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_DRIVE_CUBE));
-        
-        yButton = new JoystickButton(xboxController, Y_BUTTON);
-        yButton.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_SCALE_CUBE));
-        
-        leftBumper = new JoystickButton(xboxController, LEFT_BUMPER);
-        leftBumper.whileHeld(new IntakeBackward());
-        
-        rightBumper = new JoystickButton(xboxController, RIGHT_BUMPER);
-        rightBumper.whileHeld(new IntakeForward());
+//        aButton = new JoystickButton(xboxController, A_BUTTON);
+//        aButton.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_ACQUIRE_CUBE));
+//        
+//        bButton = new JoystickButton(xboxController, B_BUTTON);
+//        bButton.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_SWITCH_CUBE));
+//        
+//        xButton = new JoystickButton(xboxController, X_BUTTON);
+//        xButton.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_DRIVE_CUBE));
+//        
+//        yButton = new JoystickButton(xboxController, Y_BUTTON);
+//        yButton.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_SCALE_CUBE));
+//        
+//        leftBumper = new JoystickButton(xboxController, LEFT_BUMPER);
+//        leftBumper.whileHeld(new IntakeBackward());
+//        
+//        rightBumper = new JoystickButton(xboxController, RIGHT_BUMPER);
+//        rightBumper.whileHeld(new IntakeForward());
 
 //        rightTrigger = new JoystickButton(xboxController, RIGHT_TRIGGER);
 //        rightTrigger.whileHeld(new ElevatorDown());

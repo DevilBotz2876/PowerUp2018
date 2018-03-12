@@ -238,26 +238,26 @@ public class DriveTrain extends Subsystem {
 	// Don't let drivers move robot too fast when CG is high. This will need
 	// tuning.
 	public double adjustVelocityElevator(double speed) {
-		if (Robot.elevator.getCurrentPosition() > RobotMap.ELEVATOR_POSITION_SWITCH_CUBE) {
-			if (speed > 0) {
-				return MAX_RPM / 2;
-			} else {
-				return -MAX_RPM / 2;
-			}
-		}
+//		if (Robot.elevator.getCurrentPosition() > RobotMap.ELEVATOR_POSITION_SWITCH_CUBE) {
+//			if (speed > 0) {
+//				return MAX_RPM / 2;
+//			} else {
+//				return -MAX_RPM / 2;
+//			}
+//		}
 		return speed;
 	}
 
 	// Don't let drivers move robot too fast when CG is high. This will need
 	// tuning.
 	public double adjustJoystickElevator(double speed) {
-		if (Robot.elevator.getCurrentPosition() < RobotMap.ELEVATOR_POSITION_SLOW_DRIVE) {
-			if (speed > RobotMap.SENSITIVE_DRIVE_SPEED) {
-				return RobotMap.SENSITIVE_DRIVE_SPEED;
-			} else if (speed < -RobotMap.SENSITIVE_DRIVE_SPEED) {
-				return -RobotMap.SENSITIVE_DRIVE_SPEED;
-			}
-		}
+//		if (Robot.elevator.getCurrentPosition() < RobotMap.ELEVATOR_POSITION_SLOW_DRIVE) {
+//			if (speed > RobotMap.SENSITIVE_DRIVE_SPEED) {
+//				return RobotMap.SENSITIVE_DRIVE_SPEED;
+//			} else if (speed < -RobotMap.SENSITIVE_DRIVE_SPEED) {
+//				return -RobotMap.SENSITIVE_DRIVE_SPEED;
+//			}
+//		}
 		return speed;
 	}
 
