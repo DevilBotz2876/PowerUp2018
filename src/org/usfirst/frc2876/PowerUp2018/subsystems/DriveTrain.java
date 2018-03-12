@@ -379,6 +379,10 @@ public class DriveTrain extends Subsystem {
 		serverUsb.setResolution(160, 120);
 
 	}
+	
+	public boolean navxIsMoving(){
+		return navx.isMoving();
+	}
 
 	public void updateSmartDashboard() {
 		SmartDashboard.putData(this);
@@ -387,7 +391,7 @@ public class DriveTrain extends Subsystem {
 		SmartDashboard.putNumber("navX angle", navx.getAngle());
 //		SmartDashboard.putBoolean("is navx connecticut?", navx.isConnected());
 //		SmartDashboard.putData("Differential Drive Data", differentialDrive);
-//		SmartDashboard.putBoolean("is navX moving", navx.isMoving());
+		SmartDashboard.putBoolean("is navX moving", navx.isMoving());
 //		SmartDashboard.putBoolean("is navX rotating", navx.isRotating());
 
 		SmartDashboard.putNumber("Right Velocity", rightMaster.getSelectedSensorVelocity(0));

@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class AutoDriveStraightDistance extends Command {
 
 	private double m_distance;
+	private boolean hasMoved = false;
 	
     public AutoDriveStraightDistance(double distance) {
     	m_distance = distance;
@@ -28,11 +29,14 @@ public class AutoDriveStraightDistance extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.driveTrain.setVelocityStraightDistance();
+    	if(Robot.driveTrain.navxIsMoving()){
+    		hasMoved = true;
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.driveTrain.isDistanceDone();
+        return Robot.driveTrain.isDistanceDone() || (!Robot.driveTrain.navxIsMoving() && hasMoved);
     }
 
     // Called once after isFinished returns true
