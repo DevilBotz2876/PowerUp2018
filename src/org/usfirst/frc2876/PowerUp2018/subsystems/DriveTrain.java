@@ -77,6 +77,7 @@ public class DriveTrain extends Subsystem {
 	public PIDController turnController;
 	public AHRS navx;
 	public CameraServer server;
+	public boolean sensitiveDriveOn = false;
 
 	private int distanceOnTargets;
 	private int turnOnTargets;
@@ -251,7 +252,15 @@ public class DriveTrain extends Subsystem {
 	// Don't let drivers move robot too fast when CG is high. This will need
 	// tuning.
 	public double adjustJoystickElevator(double speed) {
-		if (Robot.elevator.getCurrentPosition() < RobotMap.ELEVATOR_POSITION_SLOW_DRIVE) {
+		boolean isHigh = Robot.elevator.getCurrentPosition() < RobotMap.ELEVATOR_POSITION_SLOW_DRIVE;
+		if (isHigh) {
+			if (speed > RobotMap.SENSITIVE_HIGH_DRIVE_SPEED) {
+				return RobotMap.SENSITIVE_HIGH_DRIVE_SPEED;
+			} else if (speed < -RobotMap.SENSITIVE_HIGH_DRIVE_SPEED) {
+				return -RobotMap.SENSITIVE_HIGH_DRIVE_SPEED;
+			}
+		}
+		if (sensitiveDriveOn) {
 			if (speed > RobotMap.SENSITIVE_DRIVE_SPEED) {
 				return RobotMap.SENSITIVE_DRIVE_SPEED;
 			} else if (speed < -RobotMap.SENSITIVE_DRIVE_SPEED) {
@@ -393,6 +402,8 @@ public class DriveTrain extends Subsystem {
 //		SmartDashboard.putData("Differential Drive Data", differentialDrive);
 		SmartDashboard.putBoolean("is navX moving", navx.isMoving());
 //		SmartDashboard.putBoolean("is navX rotating", navx.isRotating());
+		
+		SmartDashboard.putBoolean("DriveTrain isSensitive", sensitiveDriveOn);
 
 		SmartDashboard.putNumber("Right Velocity", rightMaster.getSelectedSensorVelocity(0));
 		SmartDashboard.putNumber("Left Velocity", leftMaster.getSelectedSensorVelocity(0));

@@ -120,10 +120,11 @@ public class Robot extends TimedRobot {
         
     	// Get Robot Position from SmartDashboard
     	robotPos = startPosChooser.getSelected();
+    	Long delay = (long) SmartDashboard.getNumber(RobotMap.SD_KEY_AUTO_DELAY, 0);
     	
     	// Get the autonomous command to run
 //        autonomousCommand = autoChooser.getSelected();
-    	autonomousCommand = new AutoCGSwitchScale();
+    	autonomousCommand = new AutoCGSwitchScale(delay);
         if (autonomousCommand != null) autonomousCommand.start();
     }
 

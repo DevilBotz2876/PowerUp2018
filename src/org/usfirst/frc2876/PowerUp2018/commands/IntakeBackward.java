@@ -57,6 +57,7 @@ public class IntakeBackward extends Command {
     @Override
     protected void end() {
     	Robot.intake.setBothMotors(0);
+    	System.out.println("Intake expelled");
     }
 
     // Called when another command which requires one or more of the same
