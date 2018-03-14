@@ -77,6 +77,7 @@ public class DriveTrain extends Subsystem {
 	public PIDController turnController;
 	public AHRS navx;
 	public CameraServer server;
+	public boolean sensitiveDriveOn = false;
 
 	private int distanceOnTargets;
 	private int turnOnTargets;
@@ -258,6 +259,13 @@ public class DriveTrain extends Subsystem {
 //				return -RobotMap.SENSITIVE_DRIVE_SPEED;
 //			}
 //		}
+		if (sensitiveDriveOn) {
+			if (speed > RobotMap.SENSITIVE_DRIVE_SPEED) {
+				return RobotMap.SENSITIVE_DRIVE_SPEED;
+			} else if (speed < -RobotMap.SENSITIVE_DRIVE_SPEED) {
+				return -RobotMap.SENSITIVE_DRIVE_SPEED;
+			}
+		}
 		return speed;
 	}
 
@@ -394,6 +402,11 @@ public class DriveTrain extends Subsystem {
 		SmartDashboard.putBoolean("is navX moving", navx.isMoving());
 //		SmartDashboard.putBoolean("is navX rotating", navx.isRotating());
 
+		SmartDashboard.putBoolean("DriveTrain isSensitive", sensitiveDriveOn);
+		
+		SmartDashboard.putNumber("DriveTrain Rotate Output", Robot.driveTrain.adjustJoystickElevator(Robot.oi.getRightX()));
+		SmartDashboard.putNumber("DriveTrain Speed Output", Robot.driveTrain.adjustJoystickElevator(Robot.oi.getLeftY()));
+		
 		SmartDashboard.putNumber("Right Velocity", rightMaster.getSelectedSensorVelocity(0));
 		SmartDashboard.putNumber("Left Velocity", leftMaster.getSelectedSensorVelocity(0));
 

@@ -74,7 +74,7 @@ public class RobotMap {
     public static int ELEVATOR_POSITION_ACQUIRE_CUBE = -2364;
     public static int ELEVATOR_POSITION_KICKSTAND = 0;
     
-    public static double SENSITIVE_DRIVE_SPEED = 0.25;
+    public static double SENSITIVE_DRIVE_SPEED = 0.4;
     
     
     
