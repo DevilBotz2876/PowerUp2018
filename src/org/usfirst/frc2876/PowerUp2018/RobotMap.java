@@ -70,9 +70,9 @@ public class RobotMap {
     public static int ELEVATOR_POSITION_SCALE_CUBE = -27000;
     public static int ELEVATOR_POSITION_SLOW_DRIVE = -15000;
     // was -11292, raise it by 1k to account for cube slipping/turning and hanging below the switch wall.
-    public static int ELEVATOR_POSITION_SWITCH_CUBE = -13292;
+    public static int ELEVATOR_POSITION_SWITCH_CUBE = -14292;
     public static int ELEVATOR_POSITION_DRIVE_CUBE = -2700;
-    public static int ELEVATOR_POSITION_ACQUIRE_CUBE = -2364;
+    public static int ELEVATOR_POSITION_ACQUIRE_CUBE = -2864;
     public static int ELEVATOR_POSITION_KICKSTAND = 0;
     
     public static double SENSITIVE_HIGH_DRIVE_SPEED = 0.25;

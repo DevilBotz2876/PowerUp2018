@@ -96,8 +96,8 @@ public class OI {
         // SmartDashboard Buttons
         //SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
 //        SmartDashboard.putData("IntakeStop", new IntakeStop());
-//        SmartDashboard.putData("IntakeBackward", new IntakeBackward());
-//        SmartDashboard.putData("IntakeForward", new IntakeForward());
+        SmartDashboard.putData("IntakeBackward", new IntakeBackward());
+        SmartDashboard.putData("IntakeForward", new IntakeForward());
 //        SmartDashboard.putData("ElevatorUp", new ElevatorUp());
 //        SmartDashboard.putData("ElevatorDown", new ElevatorDown());
 //        SmartDashboard.putData("ElevatorStop", new ElevatorStop());

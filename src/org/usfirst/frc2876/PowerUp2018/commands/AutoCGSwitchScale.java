@@ -61,7 +61,7 @@ public class AutoCGSwitchScale extends CommandGroup {
     	
 		if (expel) {
 		// Expel cube
-			addSequential(new IntakeBackward(), 2);
+			addSequential(new IntakeForward(), 5);
 		}
     }
     
@@ -72,14 +72,14 @@ public class AutoCGSwitchScale extends CommandGroup {
 		addSequential(new AutoDriveTurn(60 * angleMultiplier));
 		addSequential(new AutoDriveStraightDistance(Distances.CENTER_TURN_TO_SWITCH));
 		addSequential(new AutoDriveTurn(-60 * angleMultiplier));
-		addSequential(new AutoDriveStraightDistance(Distances.CENTER_DRIVE_TO_SWITCH_AFTER_TURN + fudgeDistance));
+		addSequential(new AutoDriveStraightDistance(Distances.CENTER_DRIVE_TO_SWITCH_AFTER_TURN + fudgeDistance), 5);
     }
     
     private void fromSideDoSameSwitch(boolean turnClockwise) {
     	int turnAngleModifier = turnClockwise ? 1 : -1;
 		addSequential(new AutoDriveStraightDistance(Distances.WALL_TO_SWITCH));
 		addSequential(new AutoDriveTurn(90 * turnAngleModifier));
-		addSequential(new AutoDriveStraightDistance(Distances.AT_SWITCH));
+		addSequential(new AutoDriveStraightDistance(Distances.AT_SWITCH), 3);
     }
     
     private void fromSideDoOppositeScale(boolean turnClockwise) {
