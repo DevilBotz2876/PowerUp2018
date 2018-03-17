@@ -36,8 +36,8 @@ public class Intake extends Subsystem {
     private final WPI_TalonSRX leftMotor = RobotMap.intakeIntakeLeftTalonSRX8;
     
     private final double DISTANCE_WHEN_BOX_IN = 8; // distance in inches
-    private final double IN_SPEED = -.8;
-    private final double OUT_SPEED = .7;
+    private final double IN_SPEED = .8;
+    private final double OUT_SPEED = -.7;
    
     private Ultrasonic usIntakeSensor = RobotMap.usIntakeSensor;
     

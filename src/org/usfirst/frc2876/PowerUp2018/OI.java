@@ -11,18 +11,16 @@
 
 package org.usfirst.frc2876.PowerUp2018;
 
+import org.usfirst.frc2876.PowerUp2018.commands.ElevatorDown;
 import org.usfirst.frc2876.PowerUp2018.commands.ElevatorGoToPosition;
-import org.usfirst.frc2876.PowerUp2018.commands.IntakeIn;
-import org.usfirst.frc2876.PowerUp2018.commands.IntakeStop;
-import org.usfirst.frc2876.PowerUp2018.commands.ToggleSensitiveDrive;
-import org.usfirst.frc2876.PowerUp2018.commands.XboxDrive;
+import org.usfirst.frc2876.PowerUp2018.commands.ElevatorUp;
 import org.usfirst.frc2876.PowerUp2018.commands.IntakeLeftIn;
 import org.usfirst.frc2876.PowerUp2018.commands.IntakeLeftOut;
 import org.usfirst.frc2876.PowerUp2018.commands.IntakeLeftStop;
-import org.usfirst.frc2876.PowerUp2018.commands.IntakeOut;
 import org.usfirst.frc2876.PowerUp2018.commands.IntakeRightIn;
 import org.usfirst.frc2876.PowerUp2018.commands.IntakeRightOut;
 import org.usfirst.frc2876.PowerUp2018.commands.IntakeRightStop;
+import org.usfirst.frc2876.PowerUp2018.commands.ToggleSensitiveDrive;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
@@ -124,14 +122,16 @@ public class OI {
         
         leftBumper = new JoystickButton(xboxController, LEFT_BUMPER);
         //leftBumper.whileHeld(new IntakeOut());
+        leftBumper.whileHeld(new IntakeLeftIn());
         
         rightBumper = new JoystickButton(xboxController, RIGHT_BUMPER);
         //rightBumper.whileHeld(new IntakeIn());
-
-//        rightTrigger = new JoystickButton(xboxController, RIGHT_TRIGGER);
-//        rightTrigger.whileHeld(new ElevatorDown());
-//        leftTrigger = new JoystickButton(xboxController, LEFT_TRIGGER);
-//        rightTrigger.whileHeld(new ElevatorUp());
+        rightBumper.whileHeld(new IntakeRightIn());
+        
+        rightTrigger = new JoystickButton(xboxController, RIGHT_TRIGGER);
+        rightTrigger.whileHeld(new ElevatorDown());
+        leftTrigger = new JoystickButton(xboxController, LEFT_TRIGGER);
+        rightTrigger.whileHeld(new ElevatorUp());
         
     }
    
