@@ -85,8 +85,8 @@ public class AutoCGSwitchScale extends CommandGroup {
     private void fromSideDoOppositeScale(boolean turnClockwise) {
     	int turnAngleModifier = turnClockwise ? 1 : -1;
 		addSequential(new AutoDriveStraightDistance(Distances.WALL_TO_PLATFORM_ZONE));
-		addSequential(new AutoDriveTurn(90 * turnAngleModifier));
-		addSequential(new AutoDriveStraightDistance(Distances.PLATFORM_ZONE_WIDTH));
+		//addSequential(new AutoDriveTurn(90 * turnAngleModifier));
+		//addSequential(new AutoDriveStraightDistance(Distances.PLATFORM_ZONE_WIDTH));
 		//addSequential(new AutoDriveTurn(-90 * turnAngleModifier));
 		//addSequential(new AutoDriveStraightDistance(Distances.PLATFORM_ZONE_TO_SCALE));
 		//addSequential(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_SCALE_CUBE));
