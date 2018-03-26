@@ -86,6 +86,11 @@ public class OI {
         xboxController = new Joystick(0);
         
 
+        // SmartDashboard Buttons
+        //SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
+        //        SmartDashboard.putData("ElevatorUp", new ElevatorUp());
+//        SmartDashboard.putData("ElevatorDown", new ElevatorDown());
+//        SmartDashboard.putData("ElevatorStop", new ElevatorStop());
 //        SmartDashboard.putData("XboxDrive", new XboxDrive());
 //        SmartDashboard.putData("AutoDriveDistance", new AutoDriveDistance(100));
 //        SmartDashboard.putData("AutoDriveTurn", new AutoDriveTurn(90));
@@ -98,7 +103,7 @@ public class OI {
 //        SmartDashboard.putData("ElevatorMatchStart", new ElevatorMatchStart());
         
         createSmartDashboardNumber(RobotMap.SD_KEY_AUTO_DELAY, 0);
-   
+
         addSmartDashboardIntakeCommands();
         
         createSmartDashboardNumber(RobotMap.SD_KEY_ELEVATOR_POSITION_SETPOINT, 80);

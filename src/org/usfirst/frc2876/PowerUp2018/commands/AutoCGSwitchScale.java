@@ -22,7 +22,7 @@ public class AutoCGSwitchScale extends CommandGroup {
 	
     public AutoCGSwitchScale(Long delay) {
     	boolean expel = true;
-    			System.out.println("Working");
+    	System.out.println("Working");
 		// we need to raise arms to release kick-stand
     	addSequential(new AutoDelay(delay));
     	addParallel(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_SWITCH_CUBE));
