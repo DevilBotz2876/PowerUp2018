@@ -17,6 +17,7 @@ import org.usfirst.frc2876.PowerUp2018.commands.ElevatorUp;
 import org.usfirst.frc2876.PowerUp2018.commands.IntakeLeftIn;
 import org.usfirst.frc2876.PowerUp2018.commands.IntakeLeftOut;
 import org.usfirst.frc2876.PowerUp2018.commands.IntakeLeftStop;
+import org.usfirst.frc2876.PowerUp2018.commands.IntakeOut;
 import org.usfirst.frc2876.PowerUp2018.commands.IntakeRightIn;
 import org.usfirst.frc2876.PowerUp2018.commands.IntakeRightOut;
 import org.usfirst.frc2876.PowerUp2018.commands.IntakeRightStop;
@@ -112,7 +113,7 @@ public class OI {
         bButton.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_SWITCH_CUBE));
         
         xButton = new JoystickButton(xboxController, X_BUTTON);
-        xButton.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_DRIVE_CUBE));
+        xButton.whileHeld(new IntakeOut());
         
         yButton = new JoystickButton(xboxController, Y_BUTTON);
         yButton.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_SCALE_CUBE));
@@ -127,11 +128,11 @@ public class OI {
         rightBumper = new JoystickButton(xboxController, RIGHT_BUMPER);
         //rightBumper.whileHeld(new IntakeIn());
         rightBumper.whileHeld(new IntakeRightIn());
-        
-        rightTrigger = new JoystickButton(xboxController, RIGHT_TRIGGER);
-        rightTrigger.whileHeld(new ElevatorDown());
-        leftTrigger = new JoystickButton(xboxController, LEFT_TRIGGER);
-        rightTrigger.whileHeld(new ElevatorUp());
+//        
+//        rightTrigger = new JoystickButton(xboxController, RIGHT_TRIGGER);
+//        rightTrigger.whileHeld(new ElevatorDown());
+//        leftTrigger = new JoystickButton(xboxController, LEFT_TRIGGER);
+//        rightTrigger.whileHeld(new ElevatorUp());
         
     }
    

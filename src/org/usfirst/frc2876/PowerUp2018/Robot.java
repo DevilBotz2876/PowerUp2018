@@ -165,7 +165,7 @@ public class Robot extends TimedRobot {
     	//Robot.driveTrain.resetEncoders();
     	//Robot.elevator.resetPositionValue();
         //driveTrain.navx.reset();
-        driveTrain.initializeCamera();
+//        driveTrain.initializeCamera();
     }
 
     /**

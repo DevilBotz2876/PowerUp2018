@@ -106,10 +106,10 @@ public class RobotMap {
         driveTrainDifferentialDrive.setExpiration(0.1);
         driveTrainDifferentialDrive.setMaxOutput(1.0);
 
-        intakeIntakeRightTalonSRX7 = new WPI_TalonSRX(7);
+        intakeIntakeRightTalonSRX7 = new WPI_TalonSRX(8);
         
         
-        intakeIntakeLeftTalonSRX8 = new WPI_TalonSRX(8);
+        intakeIntakeLeftTalonSRX8 = new WPI_TalonSRX(7);
         
         
         elevatorElevatorTalonSRX5 = new WPI_TalonSRX(5);

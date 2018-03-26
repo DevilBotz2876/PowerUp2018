@@ -9,7 +9,7 @@ public class Distances {
 	public static final int CENTER_DRIVE_TO_LEFT_SWITCH_AFTER_TURN = 62;
 	public static final int WALL_TO_AUTOLINE = 125;
 	public static final int WALL_TO_SWITCH = 162;
-	public static final int AT_SWITCH = 16;
+	public static final int AT_SWITCH = 25;
 	// was 328 and looked good. made it 300 b/c we can't drive straight. that way we won't hit scale.
 	public static final int WALL_TO_SCALE = 300;
 	public static final int AT_SCALE = -6;
