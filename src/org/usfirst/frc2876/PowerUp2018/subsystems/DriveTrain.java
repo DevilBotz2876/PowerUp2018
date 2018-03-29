@@ -102,11 +102,11 @@ public class DriveTrain extends Subsystem {
 		// means we don't pat the safey watchdog.  So turn it off.
 		differentialDrive.setSafetyEnabled(false);
 
-		rightMaster.setMode(ControlMode.Velocity);
-		leftMaster.setMode(ControlMode.Velocity);
+//		rightMaster.setMode(ControlMode.Velocity);
+//		leftMaster.setMode(ControlMode.Velocity);
 
-//		rightMaster.setMode(ControlMode.PercentOutput);
-//		leftMaster.setMode(ControlMode.PercentOutput);
+		rightMaster.setMode(ControlMode.PercentOutput);
+		leftMaster.setMode(ControlMode.PercentOutput);
 		
 		rightMaster.setNeutralMode(NeutralMode.Coast);
 		rightFollower.setNeutralMode(NeutralMode.Coast);
@@ -126,8 +126,8 @@ public class DriveTrain extends Subsystem {
 
 		// rightMaster.setInverted(true);
 		
-		leftMaster.setInverted(true);
-		leftFollower.setInverted(true);
+		leftMaster.setInverted(false);
+		leftFollower.setInverted(false);
 		
 //		leftMaster.setInverted(false);
 //		leftFollower.setInverted(false);
@@ -135,10 +135,26 @@ public class DriveTrain extends Subsystem {
 		//PRACTICE BOT SETTINGS
 		// leftMaster.setInverted(true);
 		// leftFollower.setInverted(true);
-		leftMaster.config_kP(0, 0.3729, 0);
-		leftMaster.config_kF(0, 0.3761, 0);
-		rightMaster.config_kP(0, 0.3639, 0);
-		rightMaster.config_kF(0, 0.3503, 0);
+//		leftMaster.config_kP(0, 0.3729, 0);
+//		leftMaster.config_kF(0, 0.3761, 0);
+//		rightMaster.config_kP(0, 0.3639, 0);
+//		rightMaster.config_kF(0, 0.3503, 0);
+		
+		//MOTION MAGIC TESTING
+		leftMaster.config_kF(0, .3600, 0);
+		leftMaster.config_kP(0, 0, 0);
+		leftMaster.config_kI(0, 0, 0);
+		leftMaster.config_kD(0, 0, 0);
+		leftMaster.configMotionCruiseVelocity(2132, 0);
+		leftMaster.configMotionAcceleration(2132, 0);
+		
+		rightMaster.config_kF(0, .4012, 0);
+		rightMaster.config_kP(0, 0, 0);
+		rightMaster.config_kI(0, 0, 0);
+		rightMaster.config_kD(0, 0, 0);
+		rightMaster.configMotionCruiseVelocity(1913, 0);
+		rightMaster.configMotionAcceleration(1913, 0);
+		
 		
 //		leftMaster.config_kP(0, .2, 0);
 //		leftMaster.config_kF(0, .3138, 0);
