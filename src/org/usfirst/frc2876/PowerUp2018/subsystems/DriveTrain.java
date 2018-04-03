@@ -129,33 +129,9 @@ public class DriveTrain extends Subsystem {
 		leftMaster.setInverted(false);
 		leftFollower.setInverted(false);
 		
-//		leftMaster.setInverted(false);
-//		leftFollower.setInverted(false);
+		setPracticeBotMotionMagic();
 		
-		//PRACTICE BOT SETTINGS
-		// leftMaster.setInverted(true);
-		// leftFollower.setInverted(true);
-//		leftMaster.config_kP(0, 0.3729, 0);
-//		leftMaster.config_kF(0, 0.3761, 0);
-//		rightMaster.config_kP(0, 0.3639, 0);
-//		rightMaster.config_kF(0, 0.3503, 0);
-		
-		//MOTION MAGIC TESTING
-		leftMaster.config_kF(0, .3600, 0);
-		leftMaster.config_kP(0, 0, 0);
-		leftMaster.config_kI(0, 0, 0);
-		leftMaster.config_kD(0, 0, 0);
-		leftMaster.configMotionCruiseVelocity(2132, 0);
-		leftMaster.configMotionAcceleration(2132, 0);
-		
-		rightMaster.config_kF(0, .4012, 0);
-		rightMaster.config_kP(0, 0, 0);
-		rightMaster.config_kI(0, 0, 0);
-		rightMaster.config_kD(0, 0, 0);
-		rightMaster.configMotionCruiseVelocity(1913, 0);
-		rightMaster.configMotionAcceleration(1913, 0);
-		
-		
+
 //		leftMaster.config_kP(0, .2, 0);
 //		leftMaster.config_kF(0, .3138, 0);
 //		rightMaster.config_kP(0, .2, 0);
@@ -214,7 +190,45 @@ public class DriveTrain extends Subsystem {
 		turnController.setContinuous(true);
 
 	}
+	
+	public void setPracticeBotMotionMagic() {
+		// MOTION MAGIC TESTING
+		// practice bot measured velocity values:
+		//	Left- 2842
+		//	Right- 2550
+		//		
+		leftMaster.config_kF(0, .3600, 0);
+		leftMaster.config_kP(0, 1.6, 0);
+		leftMaster.config_kI(0, .001, 0);
+		leftMaster.config_kD(0, 20, 0);
+		leftMaster.config_IntegralZone(0, 50, 0);
+		leftMaster.configMotionCruiseVelocity(2132, 0);
+		leftMaster.configMotionAcceleration(2132, 0);
+		
+		rightMaster.config_kF(0, .4012, 0);
+		rightMaster.config_kP(0, 2.24, 0);
+		rightMaster.config_kI(0, .001, 0);
+		rightMaster.config_kD(0, 0, 0);
+		rightMaster.config_IntegralZone(0, 50, 0);
+		rightMaster.configMotionCruiseVelocity(1913, 0);
+		rightMaster.configMotionAcceleration(1913, 0);
+	}
+	
+	public void setMMSetpoint(double left, double right) {
+		leftMaster.set(ControlMode.MotionMagic, left);
+		rightMaster.set(ControlMode.MotionMagic, right);
+	}
 
+	public void setPracticeBotVelocityMode() {
+		//PRACTICE BOT SETTINGS
+		// leftMaster.setInverted(true);
+		// leftFollower.setInverted(true);
+		leftMaster.config_kP(0, 0.3729, 0);
+		leftMaster.config_kF(0, 0.3761, 0);
+		rightMaster.config_kP(0, 0.3639, 0);
+		rightMaster.config_kF(0, 0.3503, 0);
+	}
+	
 	public void setBrakeMode(boolean brake) {
 		if (brake) {
 			rightMaster.setNeutralMode(NeutralMode.Brake);

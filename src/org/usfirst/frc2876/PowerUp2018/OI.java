@@ -26,6 +26,7 @@ import org.usfirst.frc2876.PowerUp2018.commands.ElevatorUp;
 import org.usfirst.frc2876.PowerUp2018.commands.IntakeBackward;
 import org.usfirst.frc2876.PowerUp2018.commands.IntakeForward;
 import org.usfirst.frc2876.PowerUp2018.commands.IntakeStop;
+import org.usfirst.frc2876.PowerUp2018.commands.MotionMagicDrive;
 import org.usfirst.frc2876.PowerUp2018.commands.ToggleSensitiveDrive;
 import org.usfirst.frc2876.PowerUp2018.commands.XboxDrive;
 
@@ -113,7 +114,7 @@ public class OI {
 //        SmartDashboard.putData("CGAcquireCube", new CGAcquireCube());
         
 //        SmartDashboard.putData("ElevatorMatchStart", new ElevatorMatchStart());
-
+        SmartDashboard.putData("MotionMagicDrive", new MotionMagicDrive());
    
         createSmartDashboardNumber(RobotMap.SD_KEY_ELEVATOR_POSITION_SETPOINT, 80);
         

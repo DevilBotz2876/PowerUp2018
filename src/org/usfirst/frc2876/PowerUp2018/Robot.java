@@ -152,10 +152,10 @@ public class Robot extends TimedRobot {
         if (autonomousCommand != null) autonomousCommand.cancel();
         
         // TODO - Stuff that used to be in here - be sure we don't want any of these
-    	//Robot.driveTrain.resetEncoders();
     	//Robot.elevator.resetPositionValue();
         //driveTrain.navx.reset();
 //        driveTrain.initializeCamera();
+        Robot.driveTrain.resetEncoders();
     }
 
     /**
