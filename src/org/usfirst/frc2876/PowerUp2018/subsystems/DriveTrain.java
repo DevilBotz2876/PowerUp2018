@@ -102,8 +102,8 @@ public class DriveTrain extends Subsystem {
 		// means we don't pat the safey watchdog.  So turn it off.
 		differentialDrive.setSafetyEnabled(false);
 
-		rightMaster.setMode(ControlMode.Velocity);
-		leftMaster.setMode(ControlMode.Velocity);
+		rightMaster.setMode(ControlMode.PercentOutput);
+		leftMaster.setMode(ControlMode.PercentOutput);
 
 //		rightMaster.setMode(ControlMode.PercentOutput);
 //		leftMaster.setMode(ControlMode.PercentOutput);
@@ -126,11 +126,10 @@ public class DriveTrain extends Subsystem {
 
 		// rightMaster.setInverted(true);
 		
-		leftMaster.setInverted(true);
-		leftFollower.setInverted(true);
+		leftMaster.setInverted(false);
+		leftFollower.setInverted(false);
 		
-//		leftMaster.setInverted(false);
-//		leftFollower.setInverted(false);
+		setCompBotMotionMagicMode();
 		
 		//PRACTICE BOT SETTINGS
 		// leftMaster.setInverted(true);
@@ -139,12 +138,8 @@ public class DriveTrain extends Subsystem {
 		// leftMaster.config_kF(0, 0.3761, 0);
 		// rightMaster.config_kP(0, 0.3639, 0);
 		// rightMaster.config_kF(0, 0.3503, 0);
-		
-		leftMaster.config_kP(0, .2, 0);
-		leftMaster.config_kF(0, .3138, 0);
-		rightMaster.config_kP(0, .2, 0);
-		rightMaster.config_kF(0, .3027, 0);
 
+		// ?????????????????
 		// leftMaster.config_kP(0, 1.25, 0);
 		// leftMaster.config_kF(0, 0.3468, 0);
 		// rightMaster.config_kP(0, 1, 0);
@@ -197,6 +192,40 @@ public class DriveTrain extends Subsystem {
 		turnController.setAbsoluteTolerance(kTurnToleranceDegrees);
 		turnController.setContinuous(true);
 
+	}
+	
+	public void setCompBotMotionMagicMode(){
+		// Standard Velocity values:
+		//   Left- 3200
+		//   Right- 3320
+		
+		leftMaster.config_kF(0, .3197, 0);
+		leftMaster.config_kP(0, 2.84, 0);
+		leftMaster.config_kI(0, .001, 0);
+		leftMaster.config_kD(0, 28.4, 0);
+		leftMaster.config_IntegralZone(0, 50, 0);
+		leftMaster.configMotionCruiseVelocity(2400, 0);
+		leftMaster.configMotionAcceleration(2400, 0);
+		
+		rightMaster.config_kF(0, .3081, 0);
+		rightMaster.config_kP(0, 3.4, 0);
+		rightMaster.config_kI(0, .001, 0);
+		rightMaster.config_kD(0, 34, 0);
+		rightMaster.config_IntegralZone(0, 50, 0);
+		rightMaster.configMotionCruiseVelocity(2490, 0);
+		rightMaster.configMotionAcceleration(2490, 0);
+	}
+	
+	public void setMMSetpoint(double left, double right) {
+		leftMaster.set(ControlMode.MotionMagic, left);
+		rightMaster.set(ControlMode.MotionMagic, right);
+	}
+	
+	public void setCompBotVelocityMode(){
+		leftMaster.config_kP(0, .2, 0);
+		leftMaster.config_kF(0, .3138, 0);
+		rightMaster.config_kP(0, .2, 0);
+		rightMaster.config_kF(0, .3027, 0);
 	}
 
 	public void setBrakeMode(boolean brake) {
