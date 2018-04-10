@@ -18,7 +18,9 @@ import org.usfirst.frc2876.PowerUp2018.utilities.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.SensorTerm;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.cscore.UsbCamera;
@@ -212,6 +214,24 @@ public class DriveTrain extends Subsystem {
 		rightMaster.config_IntegralZone(0, 50, 0);
 		rightMaster.configMotionCruiseVelocity(1913, 0);
 		rightMaster.configMotionAcceleration(1913, 0);
+		
+		rightMaster.configSensorTerm(SensorTerm.Sum0, FeedbackDevice.RemoteSensor0, 0);
+		rightMaster.configSensorTerm(SensorTerm.Sum1, FeedbackDevice.QuadEncoder, 0);
+		rightMaster.configSensorTerm(SensorTerm.Diff1, FeedbackDevice.RemoteSensor0, 0);
+		rightMaster.configSensorTerm(SensorTerm.Diff0, FeedbackDevice.QuadEncoder, 0);
+		
+		//Auxillary PID
+		leftMaster.config_kF(1, 0, 0);
+		leftMaster.config_kP(1, 0, 0);
+		leftMaster.config_kI(1, 0, 0);
+		leftMaster.config_kD(1, 0, 0);
+		leftMaster.config_IntegralZone(1, 0, 0);
+		
+		rightMaster.config_kF(1, 0, 0);
+		rightMaster.config_kP(1, 2, 0);
+		rightMaster.config_kI(1, 0, 0);
+		rightMaster.config_kD(1, 0, 0);
+		rightMaster.config_IntegralZone(1, 0, 0);
 	}
 	
 	public void setMMSetpoint(double left, double right) {

@@ -15,6 +15,8 @@ import org.usfirst.frc2876.PowerUp2018.RobotMap;
 import org.usfirst.frc2876.PowerUp2018.utilities.BHS_TalonSRX;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.DemandType;
+import com.ctre.phoenix.motorcontrol.FollowerType;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
@@ -52,6 +54,8 @@ public class XboxDrive extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+    	leftMaster.selectProfileSlot(0, 0);
+    	leftMaster.selectProfileSlot(1, 1);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -65,11 +69,14 @@ public class XboxDrive extends Command {
     		//Testing Motion Magic
     		if(xbox.getRawButton(1)){
     			double targetPos = Robot.oi.getLeftY() * 100;
-    			leftMaster.set(ControlMode.MotionMagic, targetPos);
-    			rightMaster.set(ControlMode.MotionMagic, targetPos);
+//    			leftMaster.set(ControlMode.MotionMagic, targetPos);
+//    			rightMaster.set(ControlMode.MotionMagic, targetPos);
+//    			leftMaster.set(ControlMode.MotionMagic, targetPos, DemandType.AuxPID, 0);
+//    			rightMaster.set(ControlMode.MotionMagic, targetPos, DemandType.AuxPID, 0);
+    			rightMaster.set(ControlMode.MotionMagic, targetPos, DemandType.AuxPID, 0);
+    			leftMaster.follow(rightMaster, FollowerType.AuxOutput1);
     		}else{
-    			leftMaster.set(ControlMode.PercentOutput, Robot.oi.getLeftY());
-    			rightMaster.set(ControlMode.PercentOutput, Robot.oi.getLeftY());
+    			Robot.driveTrain.arcadeDrive(-Robot.oi.getRightX(), Robot.oi.getLeftY());
     		}
 //    		
 //    		if(Math.abs(Robot.oi.getRightX()) <= .1 && !(Math.abs(Robot.oi.getLeftY()) <= .1)){
