@@ -76,7 +76,11 @@ public class XboxDrive extends Command {
     			rightMaster.set(ControlMode.MotionMagic, targetPos, DemandType.AuxPID, 0);
     			leftMaster.follow(rightMaster, FollowerType.AuxOutput1);
     		}else{
-    			Robot.driveTrain.arcadeDrive(-Robot.oi.getRightX(), Robot.oi.getLeftY());
+    			if(Robot.driveTrain.sensitiveDriveOn){
+    				Robot.driveTrain.arcadeDrive(-Robot.oi.getRightX() / 2, Robot.oi.getLeftY() / 2);
+    			}else{
+    				Robot.driveTrain.arcadeDrive(-Robot.oi.getRightX(), Robot.oi.getLeftY());
+    			}
     		}
 //    		
 //    		if(Math.abs(Robot.oi.getRightX()) <= .1 && !(Math.abs(Robot.oi.getLeftY()) <= .1)){

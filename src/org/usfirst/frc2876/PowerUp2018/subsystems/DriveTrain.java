@@ -220,7 +220,12 @@ public class DriveTrain extends Subsystem {
 		rightMaster.configSensorTerm(SensorTerm.Diff1, FeedbackDevice.RemoteSensor0, 0);
 		rightMaster.configSensorTerm(SensorTerm.Diff0, FeedbackDevice.QuadEncoder, 0);
 		
+		//rightMaster.configSelectedFeedbackSensor(FeedbackDevice.SensorDifference, 0, 0);
+		
 		//Auxillary PID
+		
+		rightMaster.configAuxPIDPolarity(true, 0);
+		
 		leftMaster.config_kF(1, 0, 0);
 		leftMaster.config_kP(1, 0, 0);
 		leftMaster.config_kI(1, 0, 0);
