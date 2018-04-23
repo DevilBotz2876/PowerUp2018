@@ -38,13 +38,13 @@ public class IntakeBackward extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-    	Robot.intake.spinOutwards(.7);
+    	//Robot.intake.spinOutwards(.7);
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-    	
+    	Robot.intake.spearIn();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -56,8 +56,9 @@ public class IntakeBackward extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
-    	Robot.intake.setBothMotors(0);
-    	System.out.println("Intake expelled");
+    	//Robot.intake.setBothMotors(0);
+    	//System.out.println("Intake expelled");
+    	Robot.intake.spearOff();
     }
 
     // Called when another command which requires one or more of the same
