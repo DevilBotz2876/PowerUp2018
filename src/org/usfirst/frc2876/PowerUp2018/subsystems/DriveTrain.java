@@ -215,6 +215,7 @@ public class DriveTrain extends Subsystem {
 		rightMaster.configMotionCruiseVelocity(1913, 0);
 		rightMaster.configMotionAcceleration(1913, 0);
 		
+		//TODO: What is this really doing?
 		rightMaster.configSensorTerm(SensorTerm.Sum0, FeedbackDevice.RemoteSensor0, 0);
 		rightMaster.configSensorTerm(SensorTerm.Sum1, FeedbackDevice.QuadEncoder, 0);
 		rightMaster.configSensorTerm(SensorTerm.Diff1, FeedbackDevice.RemoteSensor0, 0);
@@ -224,6 +225,7 @@ public class DriveTrain extends Subsystem {
 		
 		//Auxillary PID
 		
+		//TODO: How does this work?
 		rightMaster.configAuxPIDPolarity(true, 0);
 		
 		leftMaster.config_kF(1, 0, 0);
