@@ -70,14 +70,17 @@ public class Intake extends Subsystem {
     }
     public void spearIn(){
     	ds.set(DoubleSolenoid.Value.kReverse);
+    	System.out.println("Double Solenoid Val: " + ds.get());
     }
     
     public void spearOut(){
     	ds.set(DoubleSolenoid.Value.kForward);
+    	System.out.println("Double Solenoid Val: " + ds.get());
     }
 
     public void spearOff(){
     	ds.set(DoubleSolenoid.Value.kOff);
+    	System.out.println("Double Solenoid Val: " + ds.get());
     }
     
     public void spinInwards(double output){
@@ -104,7 +107,8 @@ public class Intake extends Subsystem {
        	SmartDashboard.putBoolean("Intake Ultrasonic isRangeValid", usIntakeSensor.isRangeValid());
        	SmartDashboard.putBoolean("isBoxIn", isBoxIn());
        	SmartDashboard.putBoolean("isBoxOut", isBoxOut());
-   	
+//     	SmartDashboard.putData("Double Solenoid Val", ds.get());
+       	
     }
 
     // Put methods for controlling this subsystem

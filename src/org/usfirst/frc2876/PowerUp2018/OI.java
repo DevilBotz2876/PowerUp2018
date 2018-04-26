@@ -121,17 +121,26 @@ public class OI {
         createSmartDashboardNumber("kDistanceTolerance", 2.0);
         createSmartDashboardString("DriveTalonMode", ControlMode.PercentOutput.name());
  	
+//        aButton = new JoystickButton(xboxController, A_BUTTON);
+//        aButton.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_ACQUIRE_CUBE));
+//        
+//        bButton = new JoystickButton(xboxController, B_BUTTON);
+//        bButton.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_SWITCH_CUBE));
+//        
+//        xButton = new JoystickButton(xboxController, X_BUTTON);
+//        xButton.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_DRIVE_CUBE));
+//        
+//        yButton = new JoystickButton(xboxController, Y_BUTTON);
+//        yButton.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_SCALE_CUBE));
+        
         aButton = new JoystickButton(xboxController, A_BUTTON);
-        aButton.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_ACQUIRE_CUBE));
+        aButton.whenPressed(new IntakeStop());
         
         bButton = new JoystickButton(xboxController, B_BUTTON);
-        bButton.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_SWITCH_CUBE));
+        bButton.whenPressed(new IntakeBackward());
         
         xButton = new JoystickButton(xboxController, X_BUTTON);
-        xButton.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_DRIVE_CUBE));
-        
-        yButton = new JoystickButton(xboxController, Y_BUTTON);
-        yButton.whenPressed(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_SCALE_CUBE));
+        xButton.whenPressed(new IntakeForward());
         
         startButton = new JoystickButton(xboxController, START_BUTTON);
         startButton.whenPressed(new ToggleSensitiveDrive());
