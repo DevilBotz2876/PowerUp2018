@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.RemoteSensorSource;
 import com.ctre.phoenix.motorcontrol.SensorTerm;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -216,12 +217,24 @@ public class DriveTrain extends Subsystem {
 		rightMaster.configMotionAcceleration(1913, 0);
 		
 		//TODO: What is this really doing?
+		//rightMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
+		
+		leftMaster.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.QuadEncoder, 0, 0);
+		
+		rightMaster.configRemoteFeedbackFilter(leftMaster.getDeviceID(), RemoteSensorSource.TalonSRX_SelectedSensor, 0, 0);
+		
 		rightMaster.configSensorTerm(SensorTerm.Sum0, FeedbackDevice.RemoteSensor0, 0);
 		rightMaster.configSensorTerm(SensorTerm.Sum1, FeedbackDevice.QuadEncoder, 0);
 		rightMaster.configSensorTerm(SensorTerm.Diff1, FeedbackDevice.RemoteSensor0, 0);
 		rightMaster.configSensorTerm(SensorTerm.Diff0, FeedbackDevice.QuadEncoder, 0);
 		
-		//rightMaster.configSelectedFeedbackSensor(FeedbackDevice.SensorDifference, 0, 0);
+		rightMaster.configSelectedFeedbackSensor(FeedbackDevice.SensorSum, 0, 0);
+		rightMaster.configSelectedFeedbackSensor(FeedbackDevice.SensorDifference, 1, 0);
+		
+		rightMaster.selectProfileSlot(0, 0);
+		rightMaster.selectProfileSlot(1, 1);
+		
+		rightMaster.getSensorCollection().setQuadraturePosition(0, 0);
 		
 		//Auxillary PID
 		
@@ -466,6 +479,15 @@ public class DriveTrain extends Subsystem {
 		
 		SmartDashboard.putNumber("Right Velocity", rightMaster.getSelectedSensorVelocity(0));
 		SmartDashboard.putNumber("Left Velocity", leftMaster.getSelectedSensorVelocity(0));
+		
+		SmartDashboard.putNumber("Right Position", rightMaster.getSelectedSensorPosition(0));
+		SmartDashboard.putNumber("Left Position", leftMaster.getSelectedSensorPosition(0));
+		
+		SmartDashboard.putNumber("Right Closed Loop Error", rightMaster.getClosedLoopError(0));
+		SmartDashboard.putNumber("Left Closed Loop Error", leftMaster.getClosedLoopError(0));
+		
+		SmartDashboard.putNumber("Right Motor Output Percent", rightMaster.getMotorOutputPercent());
+		SmartDashboard.putNumber("Left Motor Output Percent", leftMaster.getMotorOutputPercent());
 
 //		SmartDashboard.putData("DistancePID", distanceController);
 //		SmartDashboard.putNumber("DistancePID Error", distanceController.getError());
@@ -601,6 +623,7 @@ public class DriveTrain extends Subsystem {
 		leftMaster.set(0);
 		rightMaster.set(0);
 	}
+	
 
 	public PIDController getTurnPID() {
 		return turnController;
