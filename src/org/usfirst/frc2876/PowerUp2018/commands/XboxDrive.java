@@ -75,6 +75,7 @@ public class XboxDrive extends Command {
 //    			rightMaster.set(ControlMode.MotionMagic, targetPos, DemandType.AuxPID, 0);
     			rightMaster.set(ControlMode.MotionMagic, targetPos, DemandType.AuxPID, 0);
     			leftMaster.follow(rightMaster, FollowerType.AuxOutput1);
+    			
     		}else{
     			if(Robot.driveTrain.sensitiveDriveOn){
     				Robot.driveTrain.arcadeDrive(-Robot.oi.getRightX() / 2, Robot.oi.getLeftY() / 2);
