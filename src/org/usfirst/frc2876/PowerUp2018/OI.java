@@ -11,23 +11,13 @@
 
 package org.usfirst.frc2876.PowerUp2018;
 
-import org.usfirst.frc2876.PowerUp2018.commands.AutoCGBox;
-import org.usfirst.frc2876.PowerUp2018.commands.AutoDriveDistance;
-import org.usfirst.frc2876.PowerUp2018.commands.AutoDriveStraightDistance;
-import org.usfirst.frc2876.PowerUp2018.commands.AutoDriveTurn;
-import org.usfirst.frc2876.PowerUp2018.commands.CGAcquireCube;
-import org.usfirst.frc2876.PowerUp2018.commands.ElevatorDown;
+import org.usfirst.frc2876.PowerUp2018.commands.ArmDown;
+import org.usfirst.frc2876.PowerUp2018.commands.ArmStop;
+import org.usfirst.frc2876.PowerUp2018.commands.ArmUp;
 import org.usfirst.frc2876.PowerUp2018.commands.ElevatorGoToPosition;
-import org.usfirst.frc2876.PowerUp2018.commands.ElevatorIdle;
-import org.usfirst.frc2876.PowerUp2018.commands.ElevatorMatchStart;
-import org.usfirst.frc2876.PowerUp2018.commands.ElevatorPosition;
-import org.usfirst.frc2876.PowerUp2018.commands.ElevatorStop;
-import org.usfirst.frc2876.PowerUp2018.commands.ElevatorUp;
 import org.usfirst.frc2876.PowerUp2018.commands.IntakeBackward;
 import org.usfirst.frc2876.PowerUp2018.commands.IntakeForward;
-import org.usfirst.frc2876.PowerUp2018.commands.IntakeStop;
 import org.usfirst.frc2876.PowerUp2018.commands.ToggleSensitiveDrive;
-import org.usfirst.frc2876.PowerUp2018.commands.XboxDrive;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
@@ -98,6 +88,9 @@ public class OI {
 //        SmartDashboard.putData("IntakeStop", new IntakeStop());
         SmartDashboard.putData("IntakeBackward", new IntakeBackward());
         SmartDashboard.putData("IntakeForward", new IntakeForward());
+        SmartDashboard.putData("armUp", new ArmUp());
+        SmartDashboard.putData("armDown", new ArmDown());
+        SmartDashboard.putData("armStop", new ArmStop());
 //        SmartDashboard.putData("ElevatorUp", new ElevatorUp());
 //        SmartDashboard.putData("ElevatorDown", new ElevatorDown());
 //        SmartDashboard.putData("ElevatorStop", new ElevatorStop());
