@@ -13,10 +13,10 @@ public class ArmUp extends Command {
         // Use requires() here to declare subsystem dependencies
        requires(Robot.intake);
     }
-
+    
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.intake.armUp(0.5);
+    	Robot.intake.armUp(-0.5);
     	System.out.println("armUp.initialize");
     }
 
