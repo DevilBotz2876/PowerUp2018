@@ -150,6 +150,7 @@ public class DriveTrain extends Subsystem {
 		// rightMaster.config_kP(0, 1, 0);
 		// rightMaster.config_kF(0, 0.3789, 0);
 
+		
 		straightController = new PIDController(.04, 0, 0, navx, new PIDOutput() {
 			public void pidWrite(double output) {
 				SmartDashboard.putNumber("StraightPid Output", output);
