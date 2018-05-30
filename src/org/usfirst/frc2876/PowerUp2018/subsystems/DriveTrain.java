@@ -133,7 +133,6 @@ public class DriveTrain extends Subsystem {
 		leftFollower.setInverted(false);
 		
 		setPracticeBotMotionMagic();
-		
 
 //		leftMaster.config_kP(0, .2, 0);
 //		leftMaster.config_kF(0, .3138, 0);
