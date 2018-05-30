@@ -157,7 +157,7 @@ public class Elevator extends Subsystem {
       	usElevatorSensor.ping();
     	SmartDashboard.putBoolean("Elevator Ultrasonic Enabled", usElevatorSensor.isEnabled());
        	SmartDashboard.putBoolean("Elevator Ultrasonic isRangeValid", usElevatorSensor.isRangeValid());
-       	
+
 	}
 
 	public int getSetpoint() {
@@ -224,7 +224,11 @@ public class Elevator extends Subsystem {
 			//return true;
 		//}
 		//return false;
-		return !RobotMap.hall_digi.get();
+		if(!RobotMap.hall_digi.get() == true){
+			elevatorMaster.setSelectedSensorPosition(0, 0, 0);
+			return true;
+		}
+		return false;
 	}
 	
 	public boolean isTop(){
