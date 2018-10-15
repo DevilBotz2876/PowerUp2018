@@ -17,7 +17,6 @@ public class ArmStop extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.intake.armStop(0);
-    	System.out.println("armStop.initialize");
     }
 
     // Called repeatedly when this Command is scheduled to run
