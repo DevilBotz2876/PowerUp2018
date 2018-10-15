@@ -204,7 +204,7 @@ public class Elevator extends Subsystem {
 	}
 	
 	public void Up() {
-		elevatorMaster.set(-.3);
+		elevatorMaster.set(-.1);
 
 	}
 
@@ -214,7 +214,7 @@ public class Elevator extends Subsystem {
 	}
 
 	public void Down() {
-		elevatorMaster.set(.3);
+		elevatorMaster.set(.1);
 
 	}
 	
