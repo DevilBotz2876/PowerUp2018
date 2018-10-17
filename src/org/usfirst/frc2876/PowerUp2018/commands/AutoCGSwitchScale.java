@@ -25,6 +25,7 @@ public class AutoCGSwitchScale extends CommandGroup {
     			System.out.println("Working");
 		// we need to raise arms to release kick-stand
     	addSequential(new AutoDelay(delay));
+    	addParallel(new AutoArmDown());
     	addParallel(new ElevatorGoToPosition(RobotMap.ELEVATOR_POSITION_SWITCH_CUBE));
 
 		if (Robot.getRobotPos() == Robot.RobotPosition.Center) {
