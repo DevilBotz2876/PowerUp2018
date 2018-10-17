@@ -16,7 +16,7 @@ public class ArmDown extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.intake.armDown(0.5);
+    	Robot.intake.armDown(0.8);
     }
 
     // Called repeatedly when this Command is scheduled to run

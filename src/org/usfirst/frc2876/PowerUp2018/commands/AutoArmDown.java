@@ -29,12 +29,13 @@ public class AutoArmDown extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return counter >= 35000;
+        return counter >= 200;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.intake.armStop(0);
+    	Robot.intake.armUp(-0.05);
+    	//Holds arm in place at 90 degree angle
     }
 
     // Called when another command which requires one or more of the same

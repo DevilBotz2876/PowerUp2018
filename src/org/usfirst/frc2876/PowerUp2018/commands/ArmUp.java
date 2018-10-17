@@ -16,7 +16,7 @@ public class ArmUp extends Command {
     
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.intake.armUp(-0.5);
+    	Robot.intake.armUp(-0.9);
     }
 
     // Called repeatedly when this Command is scheduled to run
