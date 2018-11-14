@@ -38,7 +38,7 @@ public class IntakeForward extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-    	Robot.intake.spinInwards(-.8);
+    	Robot.intake.spinInwards(-.7);
     }
 
     // Called repeatedly when this Command is scheduled to run
